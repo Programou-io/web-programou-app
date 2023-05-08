@@ -47,8 +47,8 @@ module.exports = {
     },
 
     fontFamily: {
-      sans: 'Roboto',
-      mono: 'Fira Code',
+      default: 'var(--font-default)',
+      mono: 'var(--font-mono)',
     },
   },
   plugins: [],
