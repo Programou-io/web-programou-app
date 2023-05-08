@@ -1,4 +1,5 @@
 import React from 'react'
+import './globals.css'
 
 export const metadata = {
   title: 'Programou',
@@ -12,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body className="text-gray-100 bg-gray-800 font-sans">{children}</body>
     </html>
   )
 }
