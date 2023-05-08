@@ -38,7 +38,11 @@ export default function Home() {
           >
             <BsYoutube size={32} />
           </a>
-          <a href="#https://github.com/programou" target="_blank">
+          <a
+            href="https://github.com/Programou-io"
+            target="_blank"
+            rel="noreferrer"
+          >
             <BsGithub size={32} />
           </a>
         </div>
