@@ -1,9 +1,23 @@
 import React from 'react'
 import './globals.css'
 
+// eslint-disable-next-line camelcase
+import { Fira_Code, Roboto } from 'next/font/google'
+
+const roboto = Roboto({
+  variable: '--font-default',
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+})
+const firaCode = Fira_Code({
+  variable: '--font-mono',
+  subsets: ['latin'],
+})
+
 export const metadata = {
   title: 'Programou',
   description: 'Plataforma de estudo de tecnologia FrontEnd, Bakcend e Mobile',
+  subsets: ['latin'],
 }
 
 export default function RootLayout({
@@ -12,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR">
-      <body className="text-gray-100 bg-gray-800 font-sans">{children}</body>
+    <html lang="pt-BR" className={`${roboto.variable} ${firaCode.variable}`}>
+      <body className="text-gray-100 bg-gray-800 font-default">{children}</body>
     </html>
   )
 }
