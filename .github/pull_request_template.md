@@ -33,3 +33,4 @@
 - [ ] Evitei a duplicação de código
 - [ ] Respeitei as guidelines do projeto
 - [ ] Revisei o código
+
