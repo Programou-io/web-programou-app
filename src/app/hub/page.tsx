@@ -3,7 +3,13 @@
 import { Spinner, Tab, TabList, Tabs } from '@chakra-ui/react'
 import { Logo } from 'programou/components/Logo'
 
-import { useEffect, useRef, useState } from 'react'
+import { HTMLAttributes, useEffect, useRef, useState } from 'react'
+
+type TextProps = HTMLAttributes<HTMLParagraphElement>
+
+function Text(props: TextProps) {
+  return <p {...props} />
+}
 
 export default function Hub() {
   const [animation, setAnimation] = useState<Object | null>(null)
@@ -66,7 +72,7 @@ export default function Hub() {
                   <input className='bg-gray-900 w-full text-left outline-none' />
                 </div>
 
-                <p className='text-gray-400 text-sm'>Essa funcionaliadde ainda está em desenvolvimento, mas voce pode contruibuir com uma sugestão.</p>
+                <Text className='text-gray-400 text-sm'>Essa funcionaliadde ainda está em desenvolvimento, mas voce pode contruibuir com uma sugestão.</Text>
 
                 <button className='bg-turquoise-700 rounded-md py-4 px-6 w-full'>Sugerir</button>
               </div>
