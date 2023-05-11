@@ -6,9 +6,13 @@ import { Logo } from 'programou/components/Logo'
 import { HTMLAttributes, useEffect, useRef, useState } from 'react'
 
 type TextProps = HTMLAttributes<HTMLParagraphElement>
-
 function Text(props: TextProps) {
   return <p {...props} />
+}
+
+type PrimaryButtonProps = HTMLAttributes<HTMLButtonElement>
+function PrimaryButton(props: PrimaryButtonProps) {
+  return <button className='bg-turquoise-700 rounded-md py-4 px-6 w-full' {...props} />
 }
 
 export default function Hub() {
@@ -74,7 +78,7 @@ export default function Hub() {
 
                 <Text className='text-gray-400 text-sm'>Essa funcionaliadde ainda está em desenvolvimento, mas voce pode contruibuir com uma sugestão.</Text>
 
-                <button className='bg-turquoise-700 rounded-md py-4 px-6 w-full'>Sugerir</button>
+                <PrimaryButton>Sugerir</PrimaryButton>
               </div>
             </div>
           </div>
