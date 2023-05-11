@@ -6,14 +6,21 @@ import { Logo } from 'programou/components/Logo'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Hub() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [animation, setAnimation] = useState<Object | null>(null)
   const ref = useRef(null)
+
   useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("https://assets4.lottiefiles.com/packages/lf20_rbpv9urtg6.json") 
+      const data = await response.json()
+
+      setAnimation(data)
+    }
+
+
     import('@lottiefiles/lottie-player')
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-  }, [setIsLoading])
+    fetchData()
+  }, [setAnimation])
 
   return (
     <div className="h-screen max-w-[1180px] mx-auto px-4">
@@ -32,21 +39,21 @@ export default function Hub() {
         </div>
       </div>
 
-      {isLoading && (
+      {(animation === null) && (
         <div className="flex items-center justify-center mt-72">
           <Spinner thickness="4px" size="xl" className="text-turquoise-500" />
         </div>
       )}
 
-      {!isLoading && (
+      {(setAnimation !== null) && (
         <div className="flex items-center justify-center mt-28">
           <lottie-player
-            id="firstLottie"
+            id="typing-lottie"
             ref={ref}
             autoplay
             loop
             mode="normal"
-            src="https://assets4.lottiefiles.com/packages/lf20_rbpv9urtg6.json"
+            src={JSON.stringify(animation)}
             style={{ width: '34rem' }}
           />
         </div>
