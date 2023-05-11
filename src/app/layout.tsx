@@ -1,4 +1,5 @@
 import React from 'react'
+import { Providers } from './chackra-ui-providers'
 import './globals.css'
 
 // eslint-disable-next-line camelcase
@@ -27,7 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${roboto.variable} ${firaCode.variable}`}>
-      <body className="text-gray-100 bg-gray-800 font-default">{children}</body>
+      <body className="text-gray-100 bg-gray-800 font-default">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
