@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${roboto.variable} ${firaCode.variable}`}>
-      <body className="text-gray-100 bg-gray-800 font-default">
+      <body className="text-gray-100 bg-gray-900 font-default">
         <Providers>{children}</Providers>
       </body>
     </html>
