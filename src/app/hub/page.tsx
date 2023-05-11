@@ -1,22 +1,17 @@
 'use client'
 
-import { Spinner, Tab, TabList, Tabs } from '@chakra-ui/react'
+import { Tab, TabList, Tabs } from '@chakra-ui/react'
+import { Loader } from 'programou/components/Loader'
 import { Logo } from 'programou/components/Logo'
+import { PrimaryButton } from 'programou/components/PrimaryButton'
+import { Text } from 'programou/components/Text'
+import { TextArea } from 'programou/components/TextArea'
 
-import { HTMLAttributes, useEffect, useRef, useState } from 'react'
-
-type TextProps = HTMLAttributes<HTMLParagraphElement>
-function Text(props: TextProps) {
-  return <p {...props} />
-}
-
-type PrimaryButtonProps = HTMLAttributes<HTMLButtonElement>
-function PrimaryButton(props: PrimaryButtonProps) {
-  return <button className='bg-turquoise-700 rounded-md py-4 px-6 w-full' {...props} />
-}
+import { FormEvent, useEffect, useRef, useState } from 'react'
 
 export default function Hub() {
   const [animation, setAnimation] = useState<Object | null>(null)
+  const [suggestion, setSuggestion] = useState<string>('')
   const ref = useRef(null)
 
   useEffect(() => {
@@ -27,10 +22,17 @@ export default function Hub() {
       setAnimation(data)
     }
 
-
     import('@lottiefiles/lottie-player')
     fetchData()
   }, [setAnimation])
+
+  function suggestionHandler(event: FormEvent<HTMLInputElement>) {
+    setSuggestion(event.target.value)
+  }
+
+  function sendSuggestionHandler() {
+    alert('Sua suggestao foi enviada com sucesso!')
+  }
 
   return (
     <div className="max-w-[1180px] mx-auto px-4 bg-gray-900">
@@ -49,41 +51,36 @@ export default function Hub() {
         </div>
       </div>
 
-      {(animation === null) && (
-        <div className="flex items-center justify-center mt-72">
-          <Spinner thickness="4px" size="xl" className="text-turquoise-500" />
-        </div>
-      )}
-
-      {(setAnimation !== null) && (
-        <div className="flex items-center justify-center mt-14">
-          <div>
-            <div className='flex items-center justify-center'>
-              <lottie-player 
-                id="typing-lottie"
-                ref={ref}
-                autoplay
-                loop
-                mode="normal"
-                src={JSON.stringify(animation)}
-                style={{ width: '34rem' }}
-              />
-            </div>
-
-            <div className='flex items-center justify-center  mb-12'>
-              <div className='bg-gray-800 rounded-md border border-gray-500 p-6 gap-4 grid'>
-                <div className='focus-within:border-turquoise-500 border rounded-md overflow-hidden min-h-[120px] bg-gray-900 p-6 border-gray-900'>
-                  <input className='bg-gray-900 w-full text-left outline-none' />
+      {(animation === null) ? (
+          <Loader />
+        ) : (
+          <div className="flex items-center justify-center mt-14">
+            <div>
+              <div className='flex items-center justify-center'>
+                <lottie-player 
+                  id="typing-lottie"
+                  ref={ref}
+                  autoplay
+                  loop
+                  mode="normal"
+                  src={JSON.stringify(animation)}
+                  style={{ width: '34rem' }}
+                />
+              </div>
+  
+              <div className='flex items-center justify-center  mb-12'>
+                <div className='bg-gray-800 rounded-md border border-gray-500 p-6 gap-4 grid'>
+                  <TextArea onChange={suggestionHandler}/>
+  
+                  <Text className='text-gray-400 text-sm'>Essa funcionaliadde ainda está em desenvolvimento, mas voce pode contruibuir com uma sugestão.</Text>
+  
+                  <PrimaryButton onClick={sendSuggestionHandler} disabled={suggestion.length == 0}>Sugerir</PrimaryButton>
                 </div>
-
-                <Text className='text-gray-400 text-sm'>Essa funcionaliadde ainda está em desenvolvimento, mas voce pode contruibuir com uma sugestão.</Text>
-
-                <PrimaryButton>Sugerir</PrimaryButton>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
     </div>
   )
 }
