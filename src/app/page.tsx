@@ -1,17 +1,18 @@
 'use client'
-// import { Logo } from 'programou/components/Logo'
 
 import Image from 'next/image'
 import { PrimaryButton } from 'programou/components/PrimaryButton'
 import { Heading, Text } from 'programou/components/Text'
 
-// import { AiFillNotification } from 'react-icons/ai'
 import { BsGithub, BsYoutube } from 'react-icons/bs'
 
+import { useRouter } from 'next/navigation'
 import { Logo } from 'programou/components/Logo'
 import programouIcon from '../assets/programou-icon.png'
 
 export default function Home() {
+  const router = useRouter()
+
   return (
     <div className="h-full">
       <div className="mt-10 font-bold text-4xl flex items-center justify-between">
@@ -45,7 +46,12 @@ export default function Home() {
             Crie sua conta onde suas ideias podem se transformar em códigos
             poderosos.
           </Text>
-          <PrimaryButton className="sm:w-fit">Criar conta</PrimaryButton>
+          <PrimaryButton
+            onClick={() => router.push('/register')}
+            className="sm:w-fit"
+          >
+            Criar conta
+          </PrimaryButton>
         </div>
 
         <Image
