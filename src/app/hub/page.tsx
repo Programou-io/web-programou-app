@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Header } from 'programou/components/Header'
 import { Loader } from 'programou/components/Loader'
 import { PrimaryButton } from 'programou/components/PrimaryButton'
@@ -9,6 +10,7 @@ import { TextArea } from 'programou/components/TextArea'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 
 export default function Hub() {
+  const router = useRouter()
   const [animation, setAnimation] = useState<Object | null>(null)
   const [suggestion, setSuggestion] = useState<string>('')
   const ref = useRef(null)
@@ -27,12 +29,21 @@ export default function Hub() {
     fetchData()
   }, [setAnimation])
 
-  function suggestionHandler(event: FormEvent<HTMLInputElement>) {
-    setSuggestion(event.target.value)
+  function onSuggestionChangeActionHandler(event: FormEvent<HTMLInputElement>) {
+    const target = event.target as HTMLInputElement
+    setSuggestion(target.value)
   }
 
-  function sendSuggestionHandler() {
+  function onProfileClickActionHandler() {
+    router.push('/profile')
+  }
+
+  function onSendSuggestionActionHandler() {
     alert('Sua suggestao foi enviada com sucesso!')
+  }
+
+  function isEmpty(suggestion: string): boolean {
+    return suggestion.length === 0
   }
 
   function makeLottieAnimation() {
@@ -55,7 +66,7 @@ export default function Hub() {
     return (
       <div className="flex items-center justify-center  mb-12">
         <div className="bg-gray-800 rounded-md border border-gray-500 p-6 gap-4 grid">
-          <TextArea onChange={suggestionHandler} />
+          <TextArea onChange={onSuggestionChangeActionHandler} />
 
           <Text className="text-gray-400 text-sm">
             Essa funcionaliadde ainda está em desenvolvimento, mas voce pode
@@ -63,8 +74,8 @@ export default function Hub() {
           </Text>
 
           <PrimaryButton
-            onClick={sendSuggestionHandler}
-            disabled={suggestion.length === 0}
+            onClick={onSendSuggestionActionHandler}
+            disabled={isEmpty(suggestion)}
           >
             Sugerir
           </PrimaryButton>
@@ -87,7 +98,7 @@ export default function Hub() {
 
   return (
     <div className="max-w-[1180px] mx-auto px-4 bg-gray-900">
-      <Header />
+      <Header onProfileClick={onProfileClickActionHandler} />
       {animation === null ? <Loader /> : makeBuildingStatePlaceholder()}
     </div>
   )
