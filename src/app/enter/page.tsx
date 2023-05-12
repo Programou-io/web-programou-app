@@ -1,58 +1,14 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { Box } from 'programou/components/Box'
+import { Checkbox } from 'programou/components/Checkbox'
+import { Heading } from 'programou/components/Heading'
 import { Logo } from 'programou/components/Logo'
 import { PrimaryButton } from 'programou/components/PrimaryButton'
-import { Heading, Text } from 'programou/components/Text'
-import { TextInput } from 'programou/components/TextArea'
-import { useState } from 'react'
-import { BsArrowLeft, BsCheckLg } from 'react-icons/bs'
-
-interface TextFieldProps {
-  label: string
-  prefix?: string
-}
-
-function TextField(props: TextFieldProps) {
-  return (
-    <div className="grid gap-2">
-      <Text>{props.label}</Text>
-      <TextInput prefix={props.prefix} />
-    </div>
-  )
-}
-
-interface CheckboxProps {
-  onChangeState?: (isCheked: boolean) => void
-}
-
-function Checkbox({ onChangeState = () => {} }: CheckboxProps) {
-  const [isChecked, setIsChecked] = useState(true)
-
-  function onClickActionHandler() {
-    const newState = !isChecked
-    setIsChecked(newState)
-    onChangeState(newState)
-  }
-
-  return (
-    <button
-      onClick={onClickActionHandler}
-      className={`flex items-center justify-center w-6 h-6 rounded-md border-2 overflow-hidden ${
-        isChecked &&
-        'bg-turquoise-500 border-turquoise-500 ease-in-out duration-[0.2s]'
-      }`}
-    >
-      <BsCheckLg
-        className={`${
-          isChecked
-            ? 'ease-in duration-[0.2s]'
-            : '-translate-y-6 ease-out duration-[0.2s]'
-        }`}
-      />
-    </button>
-  )
-}
+import { Text } from 'programou/components/Text'
+import { TextField } from 'programou/components/TextField'
+import { BsArrowLeft } from 'react-icons/bs'
 
 export default function EnterPage() {
   const router = useRouter()
@@ -76,7 +32,7 @@ export default function EnterPage() {
           <Text className="text-gray-400">Faça login e comece a usar!</Text>
         </div>
 
-        <div className="bg-gray-800 rounded-md border border-gray-500 p-6 gap-6 grid mt-5">
+        <Box className="mt-5">
           <Logo className="flex items-center justify-center font-bold text-2xl" />
 
           <div className="grid gap-4">
@@ -111,7 +67,7 @@ export default function EnterPage() {
               </Text>
             </div>
           </div>
-        </div>
+        </Box>
       </div>
     </div>
   )
