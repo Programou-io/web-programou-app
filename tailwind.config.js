@@ -23,7 +23,8 @@ module.exports = {
 
       'turquoise-100': '#97F4E5',
       'turquoise-200': '#74E8D4',
-      'turquoise-500': '#1BB298',
+      'turquoise-300': '#1BB298',
+      'turquoise-500': '#1F9782',
       'turquoise-700': '#158774',
       'turquoise-800': '#0C5E50',
 
