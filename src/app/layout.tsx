@@ -68,7 +68,9 @@ function HeadingDecorator(props: HeadingDecoratorProps) {
     makeRouteWithHeader()
   ) : (
     <>
-      <div className="h-screen">{props.children}</div>
+      <div className="h-screen max-w-[1180px] mx-auto px-4">
+        {props.children}
+      </div>
       <Footer />
     </>
   )
