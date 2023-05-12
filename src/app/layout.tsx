@@ -1,19 +1,13 @@
-import React from 'react'
+'use client'
+
+import React, { ReactNode } from 'react'
 import { Providers } from '../providers/chackra-ui-providers'
 import './globals.css'
 
-// eslint-disable-next-line camelcase
-import { Fira_Code, Roboto } from 'next/font/google'
-
-const roboto = Roboto({
-  variable: '--font-default',
-  weight: ['400', '500', '700'],
-  subsets: ['latin'],
-})
-const firaCode = Fira_Code({
-  variable: '--font-mono',
-  subsets: ['latin'],
-})
+import { usePathname, useRouter } from 'next/navigation'
+import { Footer } from 'programou/components/Footer'
+import { Header } from 'programou/components/Header'
+import { firaCode, roboto } from 'programou/providers/next-font-providers'
 
 export const metadata = {
   title: 'Programou',
@@ -26,11 +20,56 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const path = usePathname()
+  const route = useRouter()
+  const childrenComponent = HeadingDecorator({
+    push: route.push,
+    children,
+    path,
+  })
+
   return (
     <html lang="pt-BR" className={`${roboto.variable} ${firaCode.variable}`}>
       <body className="text-gray-100 bg-gray-900 font-default">
-        <Providers>{children}</Providers>
+        <Providers>{childrenComponent}</Providers>
       </body>
     </html>
+  )
+}
+
+function hasHeader(route: string) {
+  return route === '/hub'
+}
+
+interface HeadingDecoratorProps {
+  path: string | null
+  push: (path: string) => void
+  children: ReactNode
+}
+
+function HeadingDecorator(props: HeadingDecoratorProps) {
+  function onProfileClickActionHandler() {
+    props.push('/profile')
+  }
+
+  function makeRouteWithHeader() {
+    return (
+      <div>
+        <div className="max-w-[1180px] mx-auto px-4 bg-gray-900 h-screen">
+          <Header onProfileClick={onProfileClickActionHandler} />
+          {props.children}
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+
+  return hasHeader(props.path ?? '/') ? (
+    makeRouteWithHeader()
+  ) : (
+    <>
+      <div className="h-screen">{props.children}</div>
+      <Footer />
+    </>
   )
 }

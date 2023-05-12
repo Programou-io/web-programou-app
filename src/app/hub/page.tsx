@@ -1,7 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { Header } from 'programou/components/Header'
 import { Loader } from 'programou/components/Loader'
 import { PrimaryButton } from 'programou/components/PrimaryButton'
 import { Text } from 'programou/components/Text'
@@ -10,7 +8,6 @@ import { TextArea } from 'programou/components/TextArea'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 
 export default function Hub() {
-  const router = useRouter()
   const [animation, setAnimation] = useState<Object | null>(null)
   const [suggestion, setSuggestion] = useState<string>('')
   const ref = useRef(null)
@@ -32,10 +29,6 @@ export default function Hub() {
   function onSuggestionChangeActionHandler(event: FormEvent<HTMLInputElement>) {
     const target = event.target as HTMLInputElement
     setSuggestion(target.value)
-  }
-
-  function onProfileClickActionHandler() {
-    router.push('/profile')
   }
 
   function onSendSuggestionActionHandler() {
@@ -97,8 +90,7 @@ export default function Hub() {
   }
 
   return (
-    <div className="max-w-[1180px] mx-auto px-4 bg-gray-900">
-      <Header onProfileClick={onProfileClickActionHandler} />
+    <div>
       {animation === null ? <Loader /> : makeBuildingStatePlaceholder()}
     </div>
   )
