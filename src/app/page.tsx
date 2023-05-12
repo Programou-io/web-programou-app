@@ -40,6 +40,10 @@ export default function Home() {
     )
   }
 
+  function enterActionHandler() {
+    router.push('/enter')
+  }
+
   return (
     <div className="h-full">
       <div className="mt-10 font-bold text-4xl flex items-center justify-between">
@@ -48,6 +52,7 @@ export default function Home() {
         <div className="flex items-center">
           <Button
             variant="secondary"
+            onClick={enterActionHandler}
             className="text-sm flex items-center justify-center"
           >
             <BsFillPersonFill size={24} />
