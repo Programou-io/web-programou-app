@@ -11,7 +11,7 @@ export default function Home() {
         <div />
 
         <div className="font-bold text-center mx-auto p-4">
-          <Logo />
+          <Logo className="text-4xl" />
 
           <h2 className="mt-4 font-mono">
             Onde suas ideias se transformam em códigos poderosos!
