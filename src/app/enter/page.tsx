@@ -42,7 +42,11 @@ export default function EnterPage() {
               informado no momento da criação da conta.
             </Dialog.Description>
 
-            <TextField label="E-mail" placeholder="username@email.com" />
+            <TextField
+              label="E-mail"
+              type="email"
+              placeholder="username@email.com"
+            />
 
             <Dialog.DialogClose asChild>
               <PrimaryButton onClick={recoveryPasswordActionHandler}>
@@ -70,8 +74,13 @@ export default function EnterPage() {
   function makeTextFieldsSection() {
     return (
       <div className="grid gap-4">
-        <TextField prefix="@" label="Nome de usuario" />
-        <TextField label="Senha" />
+        <TextField
+          prefix="@"
+          label="Nome de usuario"
+          placeholder="seu-nome-de-usuario"
+          type="email"
+        />
+        <TextField label="Senha" type="password" />
       </div>
     )
   }

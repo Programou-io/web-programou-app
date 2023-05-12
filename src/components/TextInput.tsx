@@ -1,7 +1,7 @@
-import { HTMLAttributes } from 'react'
+import { InputHTMLAttributes } from 'react'
 import { Text } from './Text'
 
-interface TextInputProps extends HTMLAttributes<HTMLInputElement> {
+interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string
 }
 
