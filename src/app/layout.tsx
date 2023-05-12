@@ -1,5 +1,5 @@
 import React from 'react'
-import { Providers } from './chackra-ui-providers'
+import { Providers } from '../providers/chackra-ui-providers'
 import './globals.css'
 
 // eslint-disable-next-line camelcase
