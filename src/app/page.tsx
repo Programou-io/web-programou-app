@@ -1,10 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import {
-  PrimaryButton,
-  SecondaryButton,
-} from 'programou/components/PrimaryButton'
+import { Button } from 'programou/components/Button'
 import { Text } from 'programou/components/Text'
 
 import { BsFillPersonFill } from 'react-icons/bs'
@@ -32,9 +29,13 @@ export default function Home() {
           Crie sua conta onde suas ideias podem se transformar em códigos
           poderosos.
         </Text>
-        <PrimaryButton onClick={registerActionHandler} className="sm:w-fit">
+        <Button
+          variant="primary"
+          onClick={registerActionHandler}
+          className="sm:w-fit"
+        >
           Criar conta
-        </PrimaryButton>
+        </Button>
       </div>
     )
   }
@@ -45,10 +46,13 @@ export default function Home() {
         <Logo className="max-sm:text-2xl" />
 
         <div className="flex items-center">
-          <SecondaryButton className="text-sm flex items-center justify-center">
+          <Button
+            variant="secondary"
+            className="text-sm flex items-center justify-center"
+          >
             <BsFillPersonFill size={24} />
             Entrar
-          </SecondaryButton>
+          </Button>
         </div>
       </div>
 

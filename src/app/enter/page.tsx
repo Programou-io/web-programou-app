@@ -3,10 +3,10 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/navigation'
 import { Box } from 'programou/components/Box'
+import { Button } from 'programou/components/Button'
 import { Checkbox } from 'programou/components/Checkbox'
 import { Heading } from 'programou/components/Heading'
 import { Logo } from 'programou/components/Logo'
-import { PrimaryButton } from 'programou/components/PrimaryButton'
 import { Text } from 'programou/components/Text'
 import { TextField } from 'programou/components/TextField'
 import { BsArrowLeft } from 'react-icons/bs'
@@ -49,9 +49,7 @@ export default function EnterPage() {
             />
 
             <Dialog.DialogClose asChild>
-              <PrimaryButton onClick={recoveryPasswordActionHandler}>
-                Recuperar
-              </PrimaryButton>
+              <Button onClick={recoveryPasswordActionHandler}>Recuperar</Button>
             </Dialog.DialogClose>
           </Box>
         </Dialog.Content>
@@ -62,9 +60,9 @@ export default function EnterPage() {
   function makeBoxHeaderSection() {
     return (
       <div className="px-4">
-        <button onClick={backActionHandler}>
+        <Button variant="none" onClick={backActionHandler}>
           <BsArrowLeft size={24} />
-        </button>
+        </Button>
         <Heading className="text-2xl">Entre</Heading>
         <Text className="text-gray-400">Faça login e comece a usar!</Text>
       </div>
@@ -136,9 +134,9 @@ export default function EnterPage() {
             {makeTextFieldsSection()}
             {makeCheckboxSection()}
 
-            <PrimaryButton onClick={authenticateActionHandler}>
+            <Button variant="primary" onClick={authenticateActionHandler}>
               Entrar
-            </PrimaryButton>
+            </Button>
 
             {makeLinksSection()}
           </div>

@@ -1,7 +1,7 @@
 'use client'
 
+import { Button } from 'programou/components/Button'
 import { Loader } from 'programou/components/Loader'
-import { PrimaryButton } from 'programou/components/PrimaryButton'
 import { Text } from 'programou/components/Text'
 import { TextArea } from 'programou/components/TextArea'
 
@@ -66,12 +66,13 @@ export default function Hub() {
             contruibuir com uma sugestão.
           </Text>
 
-          <PrimaryButton
+          <Button
+            variant="primary"
             onClick={onSendSuggestionActionHandler}
             disabled={isEmpty(suggestion)}
           >
             Sugerir
-          </PrimaryButton>
+          </Button>
         </div>
       </div>
     )
