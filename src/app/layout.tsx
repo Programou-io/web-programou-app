@@ -7,6 +7,7 @@ import './globals.css'
 import { usePathname, useRouter } from 'next/navigation'
 import { Footer } from 'programou/components/Footer'
 import { Header } from 'programou/components/Header'
+import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
 import { firaCode, roboto } from 'programou/providers/next-font-providers'
 
 export const metadata = {
@@ -37,10 +38,6 @@ export default function RootLayout({
   )
 }
 
-function hasHeader(route: string) {
-  return route === '/hub'
-}
-
 interface HeadingDecoratorProps {
   path: string | null
   push: (path: string) => void
@@ -49,7 +46,11 @@ interface HeadingDecoratorProps {
 
 function HeadingDecorator(props: HeadingDecoratorProps) {
   function onProfileClickActionHandler() {
-    props.push('/profile')
+    props.push(PROGRAMOU_APP_ROUTES.PRIVATE.PROFILE)
+  }
+
+  function hasHeader(route: string) {
+    return PROGRAMOU_APP_ROUTES.PRIVATE.HUB === route
   }
 
   function makeRouteWithHeader() {
@@ -64,7 +65,8 @@ function HeadingDecorator(props: HeadingDecoratorProps) {
     )
   }
 
-  return hasHeader(props.path ?? '/') ? (
+  const path = props.path ?? PROGRAMOU_APP_ROUTES.PUBLIC.ROOT
+  return hasHeader(path) ? (
     makeRouteWithHeader()
   ) : (
     <>

@@ -9,6 +9,7 @@ import { Heading } from 'programou/components/Heading'
 import { Logo } from 'programou/components/Logo'
 import { Text } from 'programou/components/Text'
 import { TextField } from 'programou/components/TextField'
+import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
 import { BsArrowLeft } from 'react-icons/bs'
 import { IoMdClose } from 'react-icons/io'
 
@@ -16,11 +17,11 @@ export default function EnterPage() {
   const router = useRouter()
 
   function backActionHandler() {
-    router.push('/')
+    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.ROOT)
   }
 
   function authenticateActionHandler() {
-    router.push('/hub')
+    router.push(PROGRAMOU_APP_ROUTES.PRIVATE.HUB)
   }
 
   function recoveryPasswordActionHandler() {}
@@ -112,7 +113,7 @@ export default function EnterPage() {
             Não possui conta?{' '}
             <a
               className="underline font-bold text-turquoise-500"
-              href="/register"
+              href={PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER}
             >
               Crie uma agora!
             </a>
