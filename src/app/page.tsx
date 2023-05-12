@@ -1,10 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { PrimaryButton } from 'programou/components/PrimaryButton'
+import {
+  PrimaryButton,
+  SecondaryButton,
+} from 'programou/components/PrimaryButton'
 import { Text } from 'programou/components/Text'
 
-import { BsGithub, BsYoutube } from 'react-icons/bs'
+import { BsFillPersonFill } from 'react-icons/bs'
 
 import { useRouter } from 'next/navigation'
 import { Heading } from 'programou/components/Heading'
@@ -16,27 +19,6 @@ export default function Home() {
 
   function registerActionHandler() {
     router.push('/register')
-  }
-
-  function makeSocialBadges() {
-    return (
-      <div className="gap-4 grid grid-flow-row grid-cols-2">
-        <a
-          href="https://www.youtube.com/@programou"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <BsYoutube size={32} />
-        </a>
-        <a
-          href="https://github.com/Programou-io"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <BsGithub size={32} />
-        </a>
-      </div>
-    )
   }
 
   function makeHeroTextSection() {
@@ -61,7 +43,13 @@ export default function Home() {
     <div className="h-full">
       <div className="mt-10 font-bold text-4xl flex items-center justify-between">
         <Logo className="max-sm:text-2xl" />
-        {makeSocialBadges()}
+
+        <div className="flex items-center">
+          <SecondaryButton className="text-sm flex items-center justify-center">
+            <BsFillPersonFill size={24} />
+            Entrar
+          </SecondaryButton>
+        </div>
       </div>
 
       <div className="flex items-center justify-center mt-28 max-sm:mt-48">

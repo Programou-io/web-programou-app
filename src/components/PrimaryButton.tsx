@@ -10,3 +10,14 @@ export function PrimaryButton({ className, ...props }: PrimaryButtonProps) {
     />
   )
 }
+
+type SecondaryButtonProps = ButtonHTMLAttributes<HTMLElement>
+
+export function SecondaryButton({ className, ...props }: SecondaryButtonProps) {
+  return (
+    <button
+      className={`hover:bg-turquoise-500 hover:text-white duration-[0.2s] border-2 text-turquoise-500 py-1.5 border-turquoise-500 font-bold gap-2 rounded-md px-6 w-full disabled:bg-turquoise-700 disabled:cursor-not-allowed" ${className}`}
+      {...props}
+    />
+  )
+}
