@@ -7,5 +7,5 @@ export function Text(props: TextProps) {
 
 type HeadingProps = HTMLAttributes<HTMLParagraphElement>
 export function Heading({ className, ...props }: HeadingProps) {
-  return <h2 className={`font-bold text-6xl ${className}`} {...props} />
+  return <h2 className={`font-bold ${className}`} {...props} />
 }
