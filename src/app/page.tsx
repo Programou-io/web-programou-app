@@ -9,18 +9,18 @@ import { BsFillPersonFill } from 'react-icons/bs'
 import { useRouter } from 'next/navigation'
 import { Heading } from 'programou/components/Heading'
 import { Logo } from 'programou/components/Logo'
-import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
+import { routes } from 'programou/constants/routes'
 import programouIcon from '../assets/programou-icon.png'
 
 export default function Home() {
   const router = useRouter()
 
   function registerActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER)
+    router.push(routes.register.path)
   }
 
   function enterActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.ENTER)
+    router.push(routes.enter.path)
   }
 
   function makeHeroTextSection() {

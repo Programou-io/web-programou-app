@@ -1,10 +1,10 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { FormStepPage } from 'programou/app/register/components/FormStepPage'
 import { Button } from 'programou/components/Button'
-import { FormStepPage } from 'programou/components/FormStepPage'
 import { TextField } from 'programou/components/TextField'
-import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
+import { routes } from 'programou/constants/routes'
 import { BsArrowRight } from 'react-icons/bs'
 
 export default function RegisterPage() {
@@ -13,11 +13,11 @@ export default function RegisterPage() {
   const totalSteps = 4
 
   function onBackActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.ROOT)
+    router.push(routes.root.path)
   }
 
   function onNextStepActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER_INFORMATIONS)
+    router.push(routes.registerInformations.path)
   }
 
   return (

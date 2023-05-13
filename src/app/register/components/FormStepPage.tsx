@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react'
-import { Box } from './Box'
-import { MultiStep } from './MultiStep'
-import { OutsideHeading } from './OutsideHeading'
+import { Box } from '../../../components/Box'
+import { MultiStep } from '../../../components/MultiStep'
+import { OutsideHeading } from '../../../components/OutsideHeading'
 
 interface FormStepPageProps extends HTMLAttributes<HTMLElement> {
   title: string

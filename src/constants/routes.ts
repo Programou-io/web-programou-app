@@ -1,14 +1,10 @@
-export const PROGRAMOU_APP_ROUTES = {
-  PUBLIC: {
-    ROOT: '/',
-    ENTER: '/enter',
-    REGISTER: '/register',
-    REGISTER_INFORMATIONS: '/register/informations',
-    REGISTER_STACKS: '/register/stacks',
-    REGISTER_USER_DETAILS: '/register/user-details',
-  },
-  PRIVATE: {
-    HUB: '/hub',
-    PROFILE: '/profile',
-  },
+export const routes = {
+  root: { path: '/', isPrivate: false },
+  enter: { path: '/enter', isPrivate: false },
+  register: { path: '/register', isPrivate: false },
+  registerInformations: { path: '/register/informations', isPrivate: false },
+  registerStacks: { path: '/register/stacks', isPrivate: false },
+  registerUserDetails: { path: '/register/user-details', isPrivate: false },
+  hub: { path: '/hub', isPrivate: true },
+  profile: { path: '/profile', isPrivate: true },
 }

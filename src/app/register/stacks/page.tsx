@@ -1,10 +1,10 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { FormStepPage } from 'programou/app/register/components/FormStepPage'
 import { BorderedList } from 'programou/components/BorderedList'
 import { Button } from 'programou/components/Button'
-import { FormStepPage } from 'programou/components/FormStepPage'
-import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
+import { routes } from 'programou/constants/routes'
 import { BsArrowRight } from 'react-icons/bs'
 
 export default function StacksPage() {
@@ -12,11 +12,11 @@ export default function StacksPage() {
   const options = ['Web', 'Back-end', 'Mobile', 'DevOps', 'Embarcado']
 
   function onBackActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER_INFORMATIONS)
+    router.push(routes.registerInformations.path)
   }
 
   function onNextStepActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER_USER_DETAILS)
+    router.push(routes.registerUserDetails.path)
   }
 
   return (
