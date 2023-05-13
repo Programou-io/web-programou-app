@@ -9,7 +9,7 @@ interface HeaderProps extends HTMLAttributes<HTMLElement> {
 
 export function Header(props: HeaderProps) {
   return (
-    <div className="font-bold flex justify-between pt-12 pb-4">
+    <div className="font-bold flex items-center justify-between pt-12 max-sm:pt-8 pb-4">
       <Logo className="text-2xl" />
 
       <Tabs onChange={props.onTabChange}>
@@ -23,7 +23,7 @@ export function Header(props: HeaderProps) {
         onClick={props.onProfileClick}
       >
         <div className="bg-turquoise-500 rounded-md w-8 h-8"></div>
-        <span>Paolo P. Lopes</span>
+        <span className="max-sm:hidden">Paolo P. Lopes</span>
       </div>
     </div>
   )

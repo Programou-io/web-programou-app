@@ -29,8 +29,8 @@ export default function EnterPage() {
     return (
       <Dialog.Portal>
         <Dialog.Overlay className="bg-black opacity-80 fixed inset-0 ease-in-out duration-[0.2s]" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Box>
+        <Dialog.Content className="max-sm:w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Box className="mx-4 max-w-[500px]">
             <Dialog.DialogClose asChild>
               <IoMdClose size={32} className="cursor-pointer" />
             </Dialog.DialogClose>
@@ -109,7 +109,7 @@ export default function EnterPage() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-[550px] mt-36">
+      <div className="w-[550px] mt-36 max-sm:mt-10">
         <OutsideHeading
           title="Entre"
           description="Faça login e comece a usar!"

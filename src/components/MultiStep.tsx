@@ -21,7 +21,7 @@ export function MultiStep({ current, total, ...props }: MultiStepProps) {
   const coluns = `grid-cols-${total}`
   console.log(coluns)
   return (
-    <div className="p-2 grid gap-1">
+    <div className="p-2 grid gap-1 max-sm:w-full">
       <Text className="text-sm text-gray-400">
         Passo {current} de {total}
       </Text>

@@ -20,7 +20,7 @@ export function FormStepPage({
   ...props
 }: FormStepPageProps) {
   return (
-    <div className="w-[550px] mt-36 mx-auto gap-2 grid">
+    <div className="max-w-[550px] mt-36 max-sm:mt-10 mx-auto gap-2 grid">
       <div>
         <OutsideHeading
           title={title}

@@ -53,7 +53,7 @@ export default function Hub() {
           loop
           mode="normal"
           src={JSON.stringify(animation)}
-          style={{ width: '34rem' }}
+          style={{ width: '90%', maxWidth: '36rem' }}
         />
       </div>
     )
