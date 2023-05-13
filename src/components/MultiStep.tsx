@@ -18,12 +18,14 @@ export function MultiStep({ current, total, ...props }: MultiStepProps) {
     )
   }
 
+  const coluns = `grid-cols-${total}`
+  console.log(coluns)
   return (
     <div className="p-2 grid gap-1">
       <Text className="text-sm text-gray-400">
         Passo {current} de {total}
       </Text>
-      <div className={`grid grid-cols-4 gap-2`}>
+      <div className={`grid ${coluns} gap-2`}>
         {Array.from({ length: total }, (_, index) => index++).map((step) => {
           return makeStep(current, step)
         })}

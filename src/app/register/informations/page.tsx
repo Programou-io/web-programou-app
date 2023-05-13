@@ -16,6 +16,10 @@ export default function InformationPage() {
     router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER)
   }
 
+  function onClickNextStepActionHandler() {
+    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER_STACKS)
+  }
+
   return (
     <FormStepPage
       title="Informe seus dados"
@@ -39,6 +43,7 @@ export default function InformationPage() {
       <Button
         className="flex items-center justify-center p-4"
         variant="primary"
+        onClick={onClickNextStepActionHandler}
       >
         Proximo Passo
         <BsArrowRight size={24} />
