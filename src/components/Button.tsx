@@ -10,7 +10,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const commonStyle =
-    'font-bold gap-2 disabled:cursor-not-allowed duration-[0.2s] rounded-md w-full px-6 py-2'
+    'font-bold gap-2 disabled:cursor-not-allowed duration-[0.15s] rounded-md w-full px-6 py-2'
 
   if (variant === 'primary') {
     const variantStyle =

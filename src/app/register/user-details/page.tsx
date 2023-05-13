@@ -39,7 +39,7 @@ export default function UserDetails() {
       <div className="grid gap-4">
         <Text>Foto de perfil</Text>
         <div className="flex gap-4 items-center">
-          <button className="w-16 h-16 bg-turquoise-500 rounded-full border-spacing-1 overflow-hidden" />
+          <button className="w-16 h-16 bg-turquoise-500 rounded-md border-spacing-1 overflow-hidden" />
 
           <div>
             <Text className="text-xl font-bold">Paolo P. Lopes</Text>
