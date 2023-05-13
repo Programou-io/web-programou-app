@@ -1,8 +1,9 @@
 export const PROGRAMOU_APP_ROUTES = {
   PUBLIC: {
     ROOT: '/',
-    REGISTER: '/register',
     ENTER: '/enter',
+    REGISTER: '/register',
+    REGISTER_INFORMATIONS: '/register/informations',
   },
   PRIVATE: {
     HUB: '/hub',

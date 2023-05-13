@@ -9,25 +9,21 @@ import { TextField } from 'programou/components/TextField'
 import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
 import { BsArrowRight } from 'react-icons/bs'
 
-export default function RegisterPage() {
+export default function InformationPage() {
   const router = useRouter()
-  const currentStep = 1
+  const currentStep = 2
   const totalSteps = 4
 
   function onBackActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.ROOT)
-  }
-
-  function onNextStepActionHandler() {
-    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER_INFORMATIONS)
+    router.push(PROGRAMOU_APP_ROUTES.PUBLIC.REGISTER)
   }
 
   return (
     <div className="w-[550px] mt-36 mx-auto gap-2 grid">
       <div>
         <OutsideHeading
-          title="Bem-vindo"
-          description="Precisamos de algumas informações para criar seu perfil! Ah, você pode editar essas informações depois."
+          title="Informe seus dados"
+          description="Precisamos de mais algumas informações para criar seu perfil! Ah, você pode editar essas informações depois."
           onClick={onBackActionHandler}
         />
       </div>
@@ -37,26 +33,20 @@ export default function RegisterPage() {
       <div>
         <Box>
           <TextField
-            label="Nome completo"
-            type="text"
+            label="E-mal"
+            type="email"
             placeholder="Digite seu nome aqui ..."
           />
           <TextField
-            label="Nome de usuario"
-            prefix="@"
-            type="email"
-            placeholder="seu-usuario"
-          />
-          <TextField
-            label="Senha"
-            type="password"
-            placeholder="Digite sua senha aqui ..."
+            className="dark:text-white"
+            label="Data de nascimento"
+            placeholder="dd/mm/yyyy"
+            type="text"
           />
 
           <Button
             className="flex items-center justify-center p-4"
             variant="primary"
-            onClick={onNextStepActionHandler}
           >
             Proximo Passo
             <BsArrowRight size={24} />
