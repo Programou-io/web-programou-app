@@ -66,7 +66,11 @@ export default function EnterPage() {
           placeholder="seu-nome-de-usuario"
           type="email"
         />
-        <TextField label="Senha" type="password" />
+        <TextField
+          label="Senha"
+          type="password"
+          placeholder="Digite sua senha aqui ..."
+        />
       </div>
     )
   }
