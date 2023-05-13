@@ -5,12 +5,11 @@ import { useRouter } from 'next/navigation'
 import { Box } from 'programou/components/Box'
 import { Button } from 'programou/components/Button'
 import { Checkbox } from 'programou/components/Checkbox'
-import { Heading } from 'programou/components/Heading'
 import { Logo } from 'programou/components/Logo'
+import { OutsideHeading } from 'programou/components/OutsideHeading'
 import { Text } from 'programou/components/Text'
 import { TextField } from 'programou/components/TextField'
 import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
-import { BsArrowLeft } from 'react-icons/bs'
 import { IoMdClose } from 'react-icons/io'
 
 export default function EnterPage() {
@@ -55,18 +54,6 @@ export default function EnterPage() {
           </Box>
         </Dialog.Content>
       </Dialog.Portal>
-    )
-  }
-
-  function makeBoxHeaderSection() {
-    return (
-      <div className="px-4">
-        <Button variant="none" onClick={backActionHandler}>
-          <BsArrowLeft size={24} />
-        </Button>
-        <Heading className="text-2xl">Entre</Heading>
-        <Text className="text-gray-400">Faça login e comece a usar!</Text>
-      </div>
     )
   }
 
@@ -128,7 +115,11 @@ export default function EnterPage() {
   return (
     <div className="flex items-center justify-center">
       <div className="w-[550px] mt-36">
-        {makeBoxHeaderSection()}
+        <OutsideHeading
+          title="Entre"
+          description="Faça login e comece a usar!"
+          onClick={backActionHandler}
+        />
 
         <Box className="mt-5">
           <Logo className="flex items-center justify-center font-bold text-2xl" />
