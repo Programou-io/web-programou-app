@@ -1,10 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Box } from 'programou/components/Box'
 import { Button } from 'programou/components/Button'
-import { MultiStep } from 'programou/components/MultiStep'
-import { OutsideHeading } from 'programou/components/OutsideHeading'
+import { FormStepPage } from 'programou/components/FormStepPage'
 import { TextField } from 'programou/components/TextField'
 import { PROGRAMOU_APP_ROUTES } from 'programou/constants/routes'
 import { BsArrowRight } from 'react-icons/bs'
@@ -23,46 +21,38 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="w-[550px] mt-36 mx-auto gap-2 grid">
-      <div>
-        <OutsideHeading
-          title="Bem-vindo"
-          description="Precisamos de algumas informações para criar seu perfil! Ah, você pode editar essas informações depois."
-          onClick={onBackActionHandler}
-        />
-      </div>
+    <FormStepPage
+      title="Bem-vindo"
+      description="Precisamos de algumas informações para criar seu perfil! Ah, você pode editar essas informações depois."
+      currentStep={currentStep}
+      totalSteps={totalSteps}
+      onBackClick={onBackActionHandler}
+    >
+      <TextField
+        label="Nome completo"
+        type="text"
+        placeholder="Digite seu nome aqui ..."
+      />
+      <TextField
+        label="Nome de usuario"
+        prefix="@"
+        type="email"
+        placeholder="seu-usuario"
+      />
+      <TextField
+        label="Senha"
+        type="password"
+        placeholder="Digite sua senha aqui ..."
+      />
 
-      <MultiStep current={currentStep} total={totalSteps} className="p-2" />
-
-      <div>
-        <Box>
-          <TextField
-            label="Nome completo"
-            type="text"
-            placeholder="Digite seu nome aqui ..."
-          />
-          <TextField
-            label="Nome de usuario"
-            prefix="@"
-            type="email"
-            placeholder="seu-usuario"
-          />
-          <TextField
-            label="Senha"
-            type="password"
-            placeholder="Digite sua senha aqui ..."
-          />
-
-          <Button
-            className="flex items-center justify-center p-4"
-            variant="primary"
-            onClick={onNextStepActionHandler}
-          >
-            Proximo Passo
-            <BsArrowRight size={24} />
-          </Button>
-        </Box>
-      </div>
-    </div>
+      <Button
+        className="flex items-center justify-center p-4"
+        variant="primary"
+        onClick={onNextStepActionHandler}
+      >
+        Proximo Passo
+        <BsArrowRight size={24} />
+      </Button>
+    </FormStepPage>
   )
 }
