@@ -56,7 +56,7 @@ function HeadingDecorator(props: HeadingDecoratorProps) {
   function makeRouteWithHeader() {
     return (
       <div>
-        <div className="max-w-[1180px] mx-auto px-4 bg-gray-900 h-screen">
+        <div className="max-w-[1180px] mx-auto px-4 bg-gray-900">
           <Header onProfileClick={onProfileClickActionHandler} />
           {props.children}
         </div>
@@ -69,11 +69,11 @@ function HeadingDecorator(props: HeadingDecoratorProps) {
   return hasHeader(path) ? (
     makeRouteWithHeader()
   ) : (
-    <>
+    <div>
       <div className="h-screen max-w-[1180px] mx-auto px-4">
         {props.children}
       </div>
       <Footer />
-    </>
+    </div>
   )
 }

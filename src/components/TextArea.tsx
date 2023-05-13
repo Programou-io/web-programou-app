@@ -1,10 +1,13 @@
-import { HTMLAttributes } from 'react'
+import { TextareaHTMLAttributes } from 'react'
 
-type TextAreaProps = HTMLAttributes<HTMLInputElement>
+type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement>
 export function TextArea(props: TextAreaProps) {
   return (
-    <div className="focus-within:border-turquoise-500 border rounded-md overflow-hidden min-h-[120px] bg-gray-900 p-6 border-gray-900">
-      <input className="bg-gray-900 w-full text-left outline-none" {...props} />
+    <div className="focus-within:border-turquoise-500 border rounded-md overflow-hidden min-h-[120px] bg-gray-900 border-gray-900">
+      <textarea
+        className="bg-gray-900 w-full min-h-full text-left outline-none p-6"
+        {...props}
+      />
     </div>
   )
 }

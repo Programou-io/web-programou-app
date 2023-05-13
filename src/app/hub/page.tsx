@@ -1,5 +1,6 @@
 'use client'
 
+import { Box } from 'programou/components/Box'
 import { Button } from 'programou/components/Button'
 import { Loader } from 'programou/components/Loader'
 import { Text } from 'programou/components/Text'
@@ -26,13 +27,16 @@ export default function Hub() {
     fetchData()
   }, [setAnimation])
 
-  function onSuggestionChangeActionHandler(event: FormEvent<HTMLInputElement>) {
+  function onSuggestionChangeActionHandler(
+    event: FormEvent<HTMLTextAreaElement>,
+  ) {
     const target = event.target as HTMLInputElement
     setSuggestion(target.value)
   }
 
   function onSendSuggestionActionHandler() {
     alert('Sua suggestao foi enviada com sucesso!')
+    setSuggestion('')
   }
 
   function isEmpty(suggestion: string): boolean {
@@ -57,9 +61,12 @@ export default function Hub() {
 
   function makeSuggestionBox() {
     return (
-      <div className="flex items-center justify-center  mb-12">
-        <div className="bg-gray-800 rounded-md border border-gray-500 p-6 gap-4 grid">
-          <TextArea onChange={onSuggestionChangeActionHandler} />
+      <div className="flex items-center justify-center mb-12">
+        <Box>
+          <TextArea
+            value={suggestion}
+            onChange={onSuggestionChangeActionHandler}
+          />
 
           <Text className="text-gray-400 text-sm">
             Essa funcionaliadde ainda está em desenvolvimento, mas voce pode
@@ -73,7 +80,7 @@ export default function Hub() {
           >
             Sugerir
           </Button>
-        </div>
+        </Box>
       </div>
     )
   }
@@ -91,7 +98,7 @@ export default function Hub() {
   }
 
   return (
-    <div>
+    <div className="h-screen w-full">
       {animation === null ? <Loader /> : makeBuildingStatePlaceholder()}
     </div>
   )

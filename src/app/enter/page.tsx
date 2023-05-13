@@ -97,7 +97,9 @@ export default function EnterPage() {
     return (
       <>
         <Dialog.Trigger asChild>
-          <button className="underline">Esqueceu sua senha?</button>
+          <button className="underline text-gray-400">
+            Esqueceu sua senha?
+          </button>
         </Dialog.Trigger>
         {makeDialogComponent()}
       </>

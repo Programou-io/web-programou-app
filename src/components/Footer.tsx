@@ -3,7 +3,7 @@ import { BsGithub, BsYoutube } from 'react-icons/bs'
 export function Footer() {
   function makeSocialBadges() {
     return (
-      <div className="gap-4 grid grid-flow-row grid-cols-2">
+      <div className="flex">
         <a
           href="https://www.youtube.com/@programou"
           target="_blank"
