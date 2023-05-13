@@ -4,7 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/navigation'
 import { Box } from 'programou/components/Box'
 import { Button } from 'programou/components/Button'
-import { Checkbox } from 'programou/components/Checkbox'
+import { CheckboxField } from 'programou/components/CheckboxField'
 import { Logo } from 'programou/components/Logo'
 import { OutsideHeading } from 'programou/components/OutsideHeading'
 import { Text } from 'programou/components/Text'
@@ -71,15 +71,6 @@ export default function EnterPage() {
     )
   }
 
-  function makeCheckboxSection() {
-    return (
-      <div className="flex items-center gap-2">
-        <Checkbox />
-        <Text>Lembre-se de min</Text>
-      </div>
-    )
-  }
-
   function makeRecoveryPasswordSection() {
     return (
       <>
@@ -126,7 +117,8 @@ export default function EnterPage() {
 
           <div className="grid gap-4">
             {makeTextFieldsSection()}
-            {makeCheckboxSection()}
+
+            <CheckboxField isActiveByDefault={true} label="Lembre-se de mim" />
 
             <Button variant="primary" onClick={authenticateActionHandler}>
               Entrar

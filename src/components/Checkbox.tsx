@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { BsCheckLg } from 'react-icons/bs'
 
-interface CheckboxProps {
+export interface CheckboxProps {
   onChangeState?: (isCheked: boolean) => void
+  isActiveByDefault: boolean
 }
 
-export function Checkbox({ onChangeState = () => {} }: CheckboxProps) {
-  const [isChecked, setIsChecked] = useState(true)
+export function Checkbox({
+  onChangeState = () => {},
+  isActiveByDefault,
+}: CheckboxProps) {
+  const [isChecked, setIsChecked] = useState(isActiveByDefault)
 
   function onClickActionHandler() {
     const newState = !isChecked
