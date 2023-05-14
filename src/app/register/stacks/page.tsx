@@ -1,9 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { FormStepPage } from 'programou/app/register/components/FormStepPage'
 import { BorderedList } from 'programou/components/BorderedList'
 import { Button } from 'programou/components/Button'
+import { FormStepPage } from 'programou/components/FormStepPage'
 import { routes } from 'programou/constants/routes'
 import { useState } from 'react'
 import { BsArrowRight } from 'react-icons/bs'

@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react'
-import { Box } from '../../../components/Box'
-import { MultiStep } from '../../../components/MultiStep'
-import { OutsideHeading } from '../../../components/OutsideHeading'
+import { Box } from './Box'
+import { MultiStep } from './MultiStep'
+import { OutsideHeading } from './OutsideHeading'
 
 interface FormStepPageProps extends HTMLAttributes<HTMLElement> {
   title: string
@@ -29,7 +29,11 @@ export function FormStepPage({
         />
       </div>
 
-      <MultiStep current={currentStep} total={totalSteps} className="p-2" />
+      <MultiStep
+        current={currentStep}
+        total={`${totalSteps}`}
+        className="p-2"
+      />
 
       <div>
         <Box {...props} />

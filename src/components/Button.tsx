@@ -19,13 +19,13 @@ export function Button({
 
   if (variant === 'primary') {
     const variantStyle =
-      'bg-turquoise-500 enabled:hover:bg-turquoise-300 disabled:bg-turquoise-700'
+      'bg-turquoise-500 enabled:hover:bg-turquoise-300 disabled:bg-turquoise-700 '
     return (
       <button
         className={`invalid:bg-turquoise-500 ${commonStyle} ${variantStyle} ${className}`}
         {...props}
       >
-        {isLoading ? <Loader className="text-white" /> : children}
+        {isLoading ? <Loader size="lg" className="text-white" /> : children}
       </button>
     )
   } else if (variant === 'secondary') {
@@ -37,7 +37,11 @@ export function Button({
         className={`${commonStyle} ${variantStyle} ${className}`}
         {...props}
       >
-        {isLoading ? <Loader className="text-turquoise-500" /> : children}
+        {isLoading ? (
+          <Loader size="lg" className="text-turquoise-500" />
+        ) : (
+          children
+        )}
       </button>
     )
   } else {

@@ -1,8 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { FormStepPage } from 'programou/app/register/components/FormStepPage'
 import { Button } from 'programou/components/Button'
+import { FormStepPage } from 'programou/components/FormStepPage'
 import { Text } from 'programou/components/Text'
 import { TextArea } from 'programou/components/TextArea'
 import { routes } from 'programou/constants/routes'

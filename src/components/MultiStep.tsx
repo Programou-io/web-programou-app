@@ -11,21 +11,19 @@ export function MultiStep({ current, total, ...props }: MultiStepProps) {
     return (
       <div
         key={step}
-        className={`h-1 rounded-sm overflow-hidden ${
+        className={`h-1 w-full rounded-sm mx-1 overflow-hidden ${
           isActive ? 'bg-turquoise-500' : 'bg-gray-500'
         }`}
       />
     )
   }
 
-  const coluns = `grid-cols-${total}`
-  console.log(coluns)
   return (
-    <div className="p-2 grid gap-1 max-sm:w-full">
-      <Text className="text-sm text-gray-400">
+    <div className="py-2 grid gap-1">
+      <Text className="px-2 text-sm text-gray-400">
         Passo {current} de {total}
       </Text>
-      <div className={`grid ${coluns} gap-2`}>
+      <div className={String(`flex`)}>
         {Array.from({ length: total }, (_, index) => index++).map((step) => {
           return makeStep(current, step)
         })}
