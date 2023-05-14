@@ -41,6 +41,6 @@ export function Button({
       </button>
     )
   } else {
-    return <button {...props} />
+    return <button {...props}>{children}</button>
   }
 }
