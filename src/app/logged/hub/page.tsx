@@ -2,7 +2,6 @@
 
 import { Box } from 'programou/components/Box'
 import { Button } from 'programou/components/Button'
-import { Loader } from 'programou/components/Loader'
 import { Text } from 'programou/components/Text'
 import { TextArea } from 'programou/components/TextArea'
 
@@ -101,13 +100,5 @@ export default function Hub() {
     )
   }
 
-  return (
-    <div className="h-screen w-full">
-      {animation === null ? (
-        <Loader size="xl" thickness="4px" className="mt-72" />
-      ) : (
-        makeBuildingStatePlaceholder()
-      )}
-    </div>
-  )
+  return <div className="h-screen w-full">{makeBuildingStatePlaceholder()}</div>
 }

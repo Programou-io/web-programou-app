@@ -5,6 +5,6 @@ export const routes = {
   registerInformations: { path: '/register/informations', isPrivate: false },
   registerStacks: { path: '/register/stacks', isPrivate: false },
   registerUserDetails: { path: '/register/user-details', isPrivate: false },
-  hub: { path: '/hub', isPrivate: true },
+  hub: { path: '/logged/hub', isPrivate: true },
   profile: { path: '/profile', isPrivate: true },
 }
