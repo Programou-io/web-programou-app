@@ -10,16 +10,19 @@ import { OutsideHeading } from 'programou/components/OutsideHeading'
 import { Text } from 'programou/components/Text'
 import { TextField } from 'programou/components/TextField'
 import { routes } from 'programou/constants/routes'
+import { useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
 
 export default function EnterPage() {
   const router = useRouter()
+  const [isAuthenticating, setIsAuthenticating] = useState<boolean>(false)
 
   function backActionHandler() {
     router.push(routes.root.path)
   }
 
   function authenticateActionHandler() {
+    setIsAuthenticating(true)
     router.push(routes.hub.path)
   }
 
@@ -49,7 +52,9 @@ export default function EnterPage() {
             />
 
             <Dialog.DialogClose asChild>
-              <Button onClick={recoveryPasswordActionHandler}>Recuperar</Button>
+              <Button variant="primary" onClick={recoveryPasswordActionHandler}>
+                Recuperar
+              </Button>
             </Dialog.DialogClose>
           </Box>
         </Dialog.Content>
@@ -124,7 +129,12 @@ export default function EnterPage() {
 
             <CheckboxField isActiveByDefault={true} label="Lembre-se de mim" />
 
-            <Button variant="primary" onClick={authenticateActionHandler}>
+            <Button
+              variant="primary"
+              isLoading={isAuthenticating}
+              disabled={isAuthenticating}
+              onClick={authenticateActionHandler}
+            >
               Entrar
             </Button>
 
