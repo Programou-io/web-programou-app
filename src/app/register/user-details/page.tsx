@@ -11,6 +11,7 @@ import { FormEvent, useState } from 'react'
 export default function UserDetails() {
   const router = useRouter()
   const [about, setAbout] = useState<string>('')
+  const [showLoader, setShowLoader] = useState<boolean>(false)
 
   const currentStep = 4
   const totalSteps = 4
@@ -25,6 +26,7 @@ export default function UserDetails() {
   }
 
   function onClickNextStepActionHandler() {
+    setShowLoader(true)
     router.push(routes.hub.path)
   }
 
@@ -61,6 +63,8 @@ export default function UserDetails() {
       <Button
         className="flex items-center justify-center p-4"
         variant="primary"
+        isLoading={showLoader}
+        disabled={showLoader}
         onClick={onClickNextStepActionHandler}
       >
         Criar conta

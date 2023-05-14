@@ -5,10 +5,13 @@ import { FormStepPage } from 'programou/app/register/components/FormStepPage'
 import { Button } from 'programou/components/Button'
 import { TextField } from 'programou/components/TextField'
 import { routes } from 'programou/constants/routes'
+import { useState } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 
 export default function RegisterPage() {
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
   const currentStep = 1
   const totalSteps = 4
 
@@ -17,6 +20,7 @@ export default function RegisterPage() {
   }
 
   function onNextStepActionHandler() {
+    setIsLoading(true)
     router.push(routes.registerInformations.path)
   }
 
@@ -48,6 +52,8 @@ export default function RegisterPage() {
       <Button
         className="flex items-center justify-center p-4"
         variant="primary"
+        isLoading={isLoading}
+        disabled={isLoading}
         onClick={onNextStepActionHandler}
       >
         Proximo Passo

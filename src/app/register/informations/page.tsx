@@ -5,10 +5,13 @@ import { FormStepPage } from 'programou/app/register/components/FormStepPage'
 import { Button } from 'programou/components/Button'
 import { TextField } from 'programou/components/TextField'
 import { routes } from 'programou/constants/routes'
+import { useState } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 
 export default function InformationPage() {
   const router = useRouter()
+  const [showLoader, setShowLoader] = useState<boolean>(false)
+
   const currentStep = 2
   const totalSteps = 4
 
@@ -17,6 +20,7 @@ export default function InformationPage() {
   }
 
   function onClickNextStepActionHandler() {
+    setShowLoader(true)
     router.push(routes.registerStacks.path)
   }
 
@@ -43,6 +47,8 @@ export default function InformationPage() {
       <Button
         className="flex items-center justify-center p-4"
         variant="primary"
+        isLoading={showLoader}
+        disabled={showLoader}
         onClick={onClickNextStepActionHandler}
       >
         Proximo Passo

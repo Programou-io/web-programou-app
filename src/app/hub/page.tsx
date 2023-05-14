@@ -11,6 +11,7 @@ import { FormEvent, useEffect, useRef, useState } from 'react'
 export default function Hub() {
   const [animation, setAnimation] = useState<Object | null>(null)
   const [suggestion, setSuggestion] = useState<string>('')
+  const [isLoading, setShowLoader] = useState<boolean>(false)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function Hub() {
   }
 
   function onSendSuggestionActionHandler() {
+    setShowLoader(true)
     alert('Sua suggestao foi enviada com sucesso!')
     setSuggestion('')
   }
@@ -64,6 +66,7 @@ export default function Hub() {
       <div className="flex items-center justify-center mb-12">
         <Box>
           <TextArea
+            disabled={isLoading}
             value={suggestion}
             onChange={onSuggestionChangeActionHandler}
           />
@@ -76,7 +79,8 @@ export default function Hub() {
           <Button
             variant="primary"
             onClick={onSendSuggestionActionHandler}
-            disabled={isEmpty(suggestion)}
+            isLoading={isLoading}
+            disabled={isEmpty(suggestion) || isLoading}
           >
             Sugerir
           </Button>
@@ -99,7 +103,11 @@ export default function Hub() {
 
   return (
     <div className="h-screen w-full">
-      {animation === null ? <Loader /> : makeBuildingStatePlaceholder()}
+      {animation === null ? (
+        <Loader size="xl" thickness="4px" className="mt-72" />
+      ) : (
+        makeBuildingStatePlaceholder()
+      )}
     </div>
   )
 }

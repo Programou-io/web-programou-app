@@ -5,10 +5,13 @@ import { FormStepPage } from 'programou/app/register/components/FormStepPage'
 import { BorderedList } from 'programou/components/BorderedList'
 import { Button } from 'programou/components/Button'
 import { routes } from 'programou/constants/routes'
+import { useState } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 
 export default function StacksPage() {
   const router = useRouter()
+  const [showLoader, setShowLoader] = useState<boolean>(false)
+
   const options = ['Web', 'Back-end', 'Mobile', 'DevOps', 'Embarcado']
 
   function onBackActionHandler() {
@@ -16,6 +19,7 @@ export default function StacksPage() {
   }
 
   function onNextStepActionHandler() {
+    setShowLoader(true)
     router.push(routes.registerUserDetails.path)
   }
 
@@ -32,6 +36,8 @@ export default function StacksPage() {
       <Button
         className="flex items-center justify-center p-4"
         variant="primary"
+        isLoading={showLoader}
+        disabled={showLoader}
         onClick={onNextStepActionHandler}
       >
         Proximo Passo
