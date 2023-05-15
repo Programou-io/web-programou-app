@@ -13,17 +13,50 @@ import { routes } from 'programou/constants/routes'
 import { useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
 
+import { useToast } from '@chakra-ui/react'
+import { signIn } from 'next-auth/react'
+
 export default function EnterPage() {
   const router = useRouter()
+  const toast = useToast()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [isAuthenticating, setIsAuthenticating] = useState<boolean>(false)
 
   function backActionHandler() {
     router.push(routes.root.path)
   }
 
-  function authenticateActionHandler() {
+  async function authenticateActionHandler() {
     setIsAuthenticating(true)
-    router.push(routes.hub.path, { forceOptimisticNavigation: true })
+
+    const response = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    })
+    console.log(response)
+
+    if (response?.ok) {
+      toast({
+        title: 'Sucesso',
+        description: 'Login autenticado com sucesso',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      router.push(routes.hub.path)
+    } else {
+      toast({
+        title: 'Erro',
+        description: 'Usuario ou senha invalidos, tente novamente',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
+    }
+
+    setIsAuthenticating(false)
   }
 
   function recoveryPasswordActionHandler() {}
@@ -66,15 +99,18 @@ export default function EnterPage() {
     return (
       <div className="grid gap-4">
         <TextField
-          prefix="@"
-          label="Nome de usuario"
+          label="Email"
           placeholder="seu-nome-de-usuario"
           type="email"
+          value={email}
+          onChange={({ target }) => setEmail(target.value)}
         />
         <TextField
           label="Senha"
           type="password"
           placeholder="Digite sua senha aqui ..."
+          value={password}
+          onChange={({ target }) => setPassword(target.value)}
         />
       </div>
     )
