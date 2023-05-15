@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { Button } from 'programou/components/Button'
-import { FormStepPage } from 'programou/components/FormStepPage'
+import { Form } from 'programou/components/FormStepPage'
 import { TextField } from 'programou/components/TextField'
 import { routes } from 'programou/constants/routes'
 import { useState } from 'react'
@@ -25,7 +25,7 @@ export default function InformationPage() {
   }
 
   return (
-    <FormStepPage
+    <Form
       title="Informe seus dados"
       description="Precisamos de mais algumas informações para criar seu perfil! Ah, você pode editar essas informações depois."
       currentStep={currentStep}
@@ -54,6 +54,6 @@ export default function InformationPage() {
         Proximo Passo
         <BsArrowRight size={24} />
       </Button>
-    </FormStepPage>
+    </Form>
   )
 }

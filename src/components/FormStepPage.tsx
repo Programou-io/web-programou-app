@@ -6,12 +6,12 @@ import { OutsideHeading } from './OutsideHeading'
 interface FormStepPageProps extends HTMLAttributes<HTMLElement> {
   title: string
   description: string
-  currentStep: number
-  totalSteps: number
+  currentStep?: number
+  totalSteps?: number
   onBackClick: () => void
 }
 
-export function FormStepPage({
+export function Form({
   title,
   description,
   onBackClick,
@@ -20,7 +20,7 @@ export function FormStepPage({
   ...props
 }: FormStepPageProps) {
   return (
-    <div className="max-w-[550px] mt-36 max-sm:mt-10 mx-auto gap-2 grid">
+    <div className="max-w-[550px] max-sm:mt-10 mx-auto gap-2 grid">
       <div>
         <OutsideHeading
           title={title}
@@ -29,7 +29,9 @@ export function FormStepPage({
         />
       </div>
 
-      <MultiStep current={currentStep} total={totalSteps} className="p-2" />
+      {!!(currentStep && totalSteps) && (
+        <MultiStep current={currentStep} total={totalSteps} className="p-2" />
+      )}
 
       <div>
         <Box {...props} />

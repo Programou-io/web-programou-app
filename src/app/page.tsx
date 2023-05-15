@@ -46,7 +46,7 @@ export default function Home() {
   }
 
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <div className="mt-10 font-bold text-4xl flex items-center justify-between">
         <Logo className="max-sm:text-2xl" />
 
@@ -62,14 +62,20 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center mt-28 max-sm:mt-48">
-        {makeHeroTextSection()}
-        <Image
-          className="sm:-translate-x-10 max-sm:hidden"
-          src={programouIcon}
-          height={500}
-          alt=""
-        />
+      <div className="mt-10 sm:mt-28">
+        <div className="flex items-center justify-center sm:hidden">
+          <Image src={programouIcon} height={300} alt="" />
+        </div>
+
+        <div className="flex items-center justify-center ">
+          {makeHeroTextSection()}
+          <Image
+            className="sm:-translate-x-10 max-sm:hidden"
+            src={programouIcon}
+            height={500}
+            alt=""
+          />
+        </div>
       </div>
     </div>
   )

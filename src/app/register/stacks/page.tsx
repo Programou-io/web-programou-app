@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { BorderedList } from 'programou/components/BorderedList'
 import { Button } from 'programou/components/Button'
-import { FormStepPage } from 'programou/components/FormStepPage'
+import { Form } from 'programou/components/FormStepPage'
 import { routes } from 'programou/constants/routes'
 import { useState } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
@@ -24,7 +24,7 @@ export default function StacksPage() {
   }
 
   return (
-    <FormStepPage
+    <Form
       title="Quase lá"
       description="Nos conte um pouco sobre quais temas você tem interesse."
       currentStep={3}
@@ -43,6 +43,6 @@ export default function StacksPage() {
         Proximo Passo
         <BsArrowRight size={24} />
       </Button>
-    </FormStepPage>
+    </Form>
   )
 }

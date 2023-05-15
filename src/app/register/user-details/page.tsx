@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { Button } from 'programou/components/Button'
-import { FormStepPage } from 'programou/components/FormStepPage'
+import { Form } from 'programou/components/FormStepPage'
 import { Text } from 'programou/components/Text'
 import { TextArea } from 'programou/components/TextArea'
 import { routes } from 'programou/constants/routes'
@@ -31,7 +31,7 @@ export default function UserDetails() {
   }
 
   return (
-    <FormStepPage
+    <Form
       title="Para finalizar"
       description="Nos conte um pouco sobre quais temas você tem interesse."
       currentStep={currentStep}
@@ -69,6 +69,6 @@ export default function UserDetails() {
       >
         Criar conta
       </Button>
-    </FormStepPage>
+    </Form>
   )
 }

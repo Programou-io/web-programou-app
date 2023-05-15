@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import { Box } from 'programou/components/Box'
 import { Button } from 'programou/components/Button'
 import { CheckboxField } from 'programou/components/CheckboxField'
+import { Form } from 'programou/components/FormStepPage'
 import { Logo } from 'programou/components/Logo'
-import { OutsideHeading } from 'programou/components/OutsideHeading'
 import { Text } from 'programou/components/Text'
 import { TextField } from 'programou/components/TextField'
 import { routes } from 'programou/constants/routes'
@@ -113,35 +113,31 @@ export default function EnterPage() {
   }
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-[550px] mt-36 max-sm:mt-10">
-        <OutsideHeading
-          title="Entre"
-          description="Faça login e comece a usar!"
-          onClick={backActionHandler}
-        />
+    <div className="mt-36 h-screen">
+      <Form
+        title="Entre"
+        description="Faça login e comece a usar!"
+        onBackClick={backActionHandler}
+      >
+        <Logo className="flex items-center justify-center font-bold text-2xl" />
 
-        <Box className="mt-5">
-          <Logo className="flex items-center justify-center font-bold text-2xl" />
+        <div className="grid gap-4">
+          {makeTextFieldsSection()}
 
-          <div className="grid gap-4">
-            {makeTextFieldsSection()}
+          <CheckboxField isActiveByDefault={true} label="Lembre-se de mim" />
 
-            <CheckboxField isActiveByDefault={true} label="Lembre-se de mim" />
+          <Button
+            variant="primary"
+            isLoading={isAuthenticating}
+            disabled={isAuthenticating}
+            onClick={authenticateActionHandler}
+          >
+            Entrar
+          </Button>
 
-            <Button
-              variant="primary"
-              isLoading={isAuthenticating}
-              disabled={isAuthenticating}
-              onClick={authenticateActionHandler}
-            >
-              Entrar
-            </Button>
-
-            {makeLinksSection()}
-          </div>
-        </Box>
-      </div>
+          {makeLinksSection()}
+        </div>
+      </Form>
     </div>
   )
 }
