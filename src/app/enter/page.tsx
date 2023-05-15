@@ -56,6 +56,8 @@ export default function EnterPage() {
       })
     }
 
+    setEmail('')
+    setPassword('')
     setIsAuthenticating(false)
   }
 
