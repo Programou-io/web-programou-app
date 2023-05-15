@@ -25,7 +25,7 @@ export function Button({
         className={`invalid:bg-turquoise-500 ${commonStyle} ${variantStyle} ${className}`}
         {...props}
       >
-        {isLoading ? <Loader size="lg" className="text-white" /> : children}
+        {isLoading ? <Loader size="md" className="text-white" /> : children}
       </button>
     )
   } else if (variant === 'secondary') {
@@ -38,7 +38,7 @@ export function Button({
         {...props}
       >
         {isLoading ? (
-          <Loader size="lg" className="text-turquoise-500" />
+          <Loader size="md" className="text-turquoise-500" />
         ) : (
           children
         )}

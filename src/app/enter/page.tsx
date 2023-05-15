@@ -23,7 +23,7 @@ export default function EnterPage() {
 
   function authenticateActionHandler() {
     setIsAuthenticating(true)
-    router.push(routes.hub.path)
+    router.push(routes.hub.path, { forceOptimisticNavigation: true })
   }
 
   function recoveryPasswordActionHandler() {}

@@ -29,11 +29,7 @@ export function FormStepPage({
         />
       </div>
 
-      <MultiStep
-        current={currentStep}
-        total={`${totalSteps}`}
-        className="p-2"
-      />
+      <MultiStep current={currentStep} total={totalSteps} className="p-2" />
 
       <div>
         <Box {...props} />

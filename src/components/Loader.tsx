@@ -11,7 +11,7 @@ export function Loader({ size, thickness, className, ...props }: LoaderProps) {
     <div className="flex items-center justify-center">
       <Spinner
         thickness={thickness}
-        size="md"
+        size={size}
         className={`text-turquoise-500 ${className}`}
         {...props}
       />

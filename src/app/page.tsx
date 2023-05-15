@@ -16,11 +16,11 @@ export default function Home() {
   const router = useRouter()
 
   function registerActionHandler() {
-    router.push(routes.register.path)
+    router.push(routes.register.path, { forceOptimisticNavigation: true })
   }
 
   function enterActionHandler() {
-    router.push(routes.enter.path)
+    router.push(routes.enter.path, { forceOptimisticNavigation: true })
   }
 
   function makeHeroTextSection() {

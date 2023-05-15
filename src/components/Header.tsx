@@ -1,4 +1,6 @@
 import { Tab, TabList, Tabs } from '@chakra-ui/react'
+import Link from 'next/link'
+import { routes } from 'programou/constants/routes'
 import { HTMLAttributes } from 'react'
 import { Logo } from './Logo'
 
@@ -14,7 +16,9 @@ export function Header(props: HeaderProps) {
 
       <Tabs onChange={props.onTabChange}>
         <TabList>
-          <Tab className="text-turquoise-500">Hub</Tab>
+          <Link href={routes.hub.path}>
+            <Tab className="text-turquoise-500">Hub</Tab>
+          </Link>
         </TabList>
       </Tabs>
 
