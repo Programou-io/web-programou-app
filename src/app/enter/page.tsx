@@ -1,20 +1,16 @@
 'use client'
 
-import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/navigation'
-import { Box } from 'programou/components/Box'
-import { Button } from 'programou/components/Button'
-import { CheckboxField } from 'programou/components/CheckboxField'
 import { Form } from 'programou/components/FormStepPage'
 import { Logo } from 'programou/components/Logo'
-import { Text } from 'programou/components/Text'
-import { TextField } from 'programou/components/TextField'
 import { routes } from 'programou/constants/routes'
 import { useState } from 'react'
-import { IoMdClose } from 'react-icons/io'
 
 import { useToast } from '@chakra-ui/react'
 import { signIn } from 'next-auth/react'
+import { Button } from 'programou/components/Button'
+import { Text } from 'programou/components/Text'
+import { BsGithub, BsGoogle } from 'react-icons/bs'
 
 export default function EnterPage() {
   const router = useRouter()
@@ -61,119 +57,34 @@ export default function EnterPage() {
     setIsAuthenticating(false)
   }
 
-  function recoveryPasswordActionHandler() {}
-
-  function makeDialogComponent() {
-    return (
-      <Dialog.Portal>
-        <Dialog.Overlay className="bg-black opacity-80 fixed inset-0 ease-in-out duration-[0.2s]" />
-        <Dialog.Content className="max-sm:w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Box className="mx-4 max-w-[500px]">
-            <Dialog.DialogClose asChild>
-              <IoMdClose size={32} className="cursor-pointer" />
-            </Dialog.DialogClose>
-            <Dialog.Title className="text-white text-2xl font-bold">
-              Recupere sua senha
-            </Dialog.Title>
-            <Dialog.Description className="text-gray-200 text-lg">
-              Caso tenha perdido seu acesso você pode recupera-lo com seu email
-              informado no momento da criação da conta.
-            </Dialog.Description>
-
-            <TextField
-              label="E-mail"
-              type="email"
-              placeholder="username@email.com"
-            />
-
-            <Dialog.DialogClose asChild>
-              <Button variant="primary" onClick={recoveryPasswordActionHandler}>
-                Recuperar
-              </Button>
-            </Dialog.DialogClose>
-          </Box>
-        </Dialog.Content>
-      </Dialog.Portal>
-    )
-  }
-
-  function makeTextFieldsSection() {
-    return (
-      <div className="grid gap-4">
-        <TextField
-          label="Email"
-          placeholder="seu-nome-de-usuario"
-          type="email"
-          value={email}
-          onChange={({ target }) => setEmail(target.value)}
-        />
-        <TextField
-          label="Senha"
-          type="password"
-          placeholder="Digite sua senha aqui ..."
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-    )
-  }
-
-  function makeRecoveryPasswordSection() {
-    return (
-      <>
-        <Dialog.Trigger asChild>
-          <button className="underline text-gray-400">
-            Esqueceu sua senha?
-          </button>
-        </Dialog.Trigger>
-        {makeDialogComponent()}
-      </>
-    )
-  }
-
-  function makeLinksSection() {
-    return (
-      <Dialog.Root>
-        <div className="text-center grid gap-2">
-          {makeRecoveryPasswordSection()}
-          <Text>
-            Não possui conta?{' '}
-            <a
-              className="underline font-bold text-turquoise-500"
-              href={routes.register.path}
-            >
-              Crie uma agora!
-            </a>
-          </Text>
-        </div>
-      </Dialog.Root>
-    )
-  }
-
   return (
-    <div className="mt-36 h-screen">
+    <div className="mt-20 h-screen">
       <Form
         title="Entre"
         description="Faça login e comece a usar!"
         onBackClick={backActionHandler}
       >
         <Logo className="flex items-center justify-center font-bold text-2xl" />
-
-        <div className="grid gap-4">
-          {makeTextFieldsSection()}
-
-          <CheckboxField isActiveByDefault={true} label="Lembre-se de mim" />
-
-          <Button
-            variant="primary"
-            isLoading={isAuthenticating}
-            disabled={isAuthenticating}
-            onClick={authenticateActionHandler}
-          >
-            Entrar
+        <div className="grid gap-2">
+          <Button variant="secondary" className="flex items-center py-4">
+            <BsGoogle size={24} />
+            <Text>Entrar com conta google</Text>
           </Button>
-
-          {makeLinksSection()}
+          <Button
+            variant="secondary"
+            className="flex items-center py-4"
+            onClick={() => signIn('github')}
+          >
+            <BsGithub size={24} />
+            <Text>Entrar com Github</Text>
+          </Button>
+          <Button
+            variant="secondary"
+            className="flex items-center justify-center"
+            onClick={() => router.push(routes.enterWithCredentials.path)}
+          >
+            <Text>Entrat com suas credenciais</Text>
+          </Button>
         </div>
       </Form>
     </div>
