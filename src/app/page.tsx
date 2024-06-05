@@ -8,7 +8,11 @@ export default function Home() {
         <p className="text-black flex items-center justify-center gap-2">
           <Bell size={16} />
           Participe do nosso grupo de devs no WhatsApp.
-          <Link href="/" className="font-bold">
+          <Link
+            href="https://chat.whatsapp.com/Dyfk97bLCmE9f9uVV1QSVl"
+            passHref={true}
+            className="font-bold"
+          >
             Conhecer agora!
           </Link>
         </p>
