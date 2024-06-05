@@ -44,6 +44,8 @@ module.exports = {
       'blue-500': '#006494',
       'blue-700': '#003554',
       'blue-800': '#051923',
+
+      'yellow-500': '#FFCE1F',
     },
 
     fontFamily: {

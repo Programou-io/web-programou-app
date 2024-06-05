@@ -1,53 +1,43 @@
-import { Footer } from 'programou/components/Footer'
-import { Logo } from 'programou/components/Logo'
-
-import { AiFillNotification } from 'react-icons/ai'
-import { BsGithub, BsYoutube } from 'react-icons/bs'
+import { ArrowRight, Bell } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Home() {
   return (
     <div>
-      <div className="h-screen grid max-w-[1080px] m-auto">
-        <div />
-
-        <div className="font-bold text-center mx-auto p-4">
-          <Logo />
-
-          <h2 className="mt-4 font-mono">
-            Onde suas ideias se transformam em códigos poderosos!
-          </h2>
-        </div>
-
-        <div className="mx-4">
-          <div className="text-center gap-3 bg-gray-900 rounded-lg p-4 md:flex md:items-center md:justify-center ">
-            <AiFillNotification className="m-auto min-w-[32px]" size="32px" />
-            <p className="text-justify m-2">
-              O Nosso site está nesse momento em desenvolvimento para poder
-              atender as necessidades dos usuários da melhor forma possível. Nos
-              acompanhe nas redes sociais para não perder as novidades que estão
-              por vir!
+      <div className="bg-yellow-500 text-center py-3">
+        <p className="text-black flex items-center justify-center gap-2">
+          <Bell size={16} />
+          Participe do nosso grupo de devs no WhatsApp.
+          <Link
+            href="https://chat.whatsapp.com/Dyfk97bLCmE9f9uVV1QSVl"
+            passHref={true}
+            className="font-bold"
+          >
+            Conhecer agora!
+          </Link>
+        </p>
+      </div>
+      <div className="mt-16 mb-12">
+        <h1 className="font-extrabold text-8xl text-center">
+          Desenvolva seus
+          <br />
+          <span className="text-turquoise-500">aplicativos móveis</span>
+        </h1>
+        <h2 className="mt-12 text-center grid max-w-3xl items-center justify-center mx-auto">
+          Junte-se a nós e comece sua jornada ou especialize-se na criação e
+          manutenção de aplicativos incríveis. Nossa comunidade de
+          desenvolvedores está pronta para ajudar você a dominar o mundo da
+          programação mobile para dispositivos Apple.
+        </h2>
+        <div className="flex items-center justify-center mt-6">
+          <Link href="/sobre">
+            <p className="flex gap-4 px-6 py-3 bg-turquoise-500 text-black font-bold rounded-md">
+              Saiba mais
+              <ArrowRight />
             </p>
-          </div>
-        </div>
-
-        <div className="mb-4 mx-auto flex items-center justify-center gap-4">
-          <a
-            href="https://www.youtube.com/@programou"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <BsYoutube size={32} />
-          </a>
-          <a
-            href="https://github.com/Programou-io"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <BsGithub size={32} />
-          </a>
+          </Link>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
