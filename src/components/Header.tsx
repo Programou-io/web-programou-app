@@ -3,7 +3,7 @@ import { HeaderLinkButton } from './HeaderLinkButton'
 
 export function Header() {
   return (
-    <div className="w-full flex justify-between items-center m-auto max-w-3xl my-4">
+    <div className="w-full flex justify-between items-center m-auto max-w-3xl my-4 max-md:px-4">
       <h1 className="font-extrabold text-lg">
         <Link href="/">programou</Link>
       </h1>

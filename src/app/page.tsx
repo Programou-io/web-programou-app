@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div>
       <div className="bg-yellow-500 text-center py-3">
-        <p className="text-black flex items-center justify-center gap-2">
-          <Bell size={16} />
+        <p className="text-black text-left flex items-center justify-center gap-2 max-md:px-4">
+          <Bell />
           Participe do nosso grupo de devs no WhatsApp.
           <Link
             href="https://chat.whatsapp.com/Dyfk97bLCmE9f9uVV1QSVl"
@@ -17,8 +17,8 @@ export default function Home() {
           </Link>
         </p>
       </div>
-      <div className="mt-16 mb-12">
-        <h1 className="font-extrabold text-8xl text-center">
+      <div className="mt-16 pb-12 px-2">
+        <h1 className="font-extrabold text-8xl max-md:text-6xl text-center">
           Desenvolva seus
           <br />
           <span className="text-turquoise-500">aplicativos móveis</span>
