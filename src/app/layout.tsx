@@ -30,9 +30,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${roboto.variable} ${firaCode.variable}`}>
       <body className="text-gray-100 bg-gray-800 font-default">
-        <div className="flex flex-col h-screen justify-between">
-          <Header />
-          {children}
+        <div className="flex flex-col h-screen">
+          <div className="h-screen">
+            <Header />
+            {children}
+          </div>
           <Footer />
         </div>
       </body>

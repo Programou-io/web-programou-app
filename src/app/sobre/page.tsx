@@ -21,7 +21,7 @@ function AboutLink(props: AboutLinkProps) {
 
 export default function Abount() {
   return (
-    <div className="max-w-3xl mx-auto mb-8">
+    <div className="max-w-3xl mx-auto mb-8 max-md:px-4">
       <div>
         <h1 className="font-bold text-3xl mt-8">Conheça mais sobre nós</h1>
         <p className="mt-3">
