@@ -27,15 +27,24 @@ test('should redirect to the home if click in the programou header', async ({
   ).toBeVisible()
 })
 
-test('should present homes alert interact with it', async ({ page }) => {
+test('should redirect to learn more when click on link', async ({ page }) => {
   await page.goto('http:localhost:3000/')
 
+  await expect(page.getByRole('link', { name: 'sobre' })).toBeVisible()
+
+  await page.getByRole('link', { name: 'sobre' }).click()
+
   await expect(
-    page.getByText('Participe do nosso grupo de devs no WhatsApp.'),
+    page.getByRole('heading', { name: 'Conheça mais sobre nós' }),
   ).toBeVisible()
-  await expect(
-    page.getByRole('link', { name: 'Conhecer agora!' }),
-  ).toBeVisible()
+})
+
+test('should redirect to about page whe click in learn more', async ({
+  page,
+}) => {
+  await page.goto('http:localhost:3000/')
+
+  await expect(page.getByRole('link', { name: 'Saiba mais' })).toBeVisible()
 
   await page.getByRole('link', { name: 'Saiba mais' }).click()
 
@@ -46,6 +55,12 @@ test('should present homes alert interact with it', async ({ page }) => {
 
 test('home alert should redirect to the whatsapp invite', async ({ page }) => {
   await page.goto('http:localhost:3000/')
+  await expect(
+    page.getByText('Participe do nosso grupo de devs no WhatsApp.'),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('link', { name: 'Conhecer agora!' }),
+  ).toBeVisible()
 
   await page.getByRole('link', { name: 'Conhecer agora!' }).click()
 
