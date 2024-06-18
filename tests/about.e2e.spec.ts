@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-const ROUTE = 'http:localhost:3000/sobre'
+const ROUTE = 'https://programou.io/sobre'
 
 test('about page render principal components', async ({ page }) => {
   await page.goto(ROUTE)
@@ -52,7 +52,7 @@ test('about page redirect correct begin link', async ({ page }) => {
 
   await page.getByRole('link', { name: 'inicío' }).click()
 
-  await expect(page).toHaveURL('http:localhost:3000/')
+  await expect(page).toHaveURL('https://programou.io')
 })
 
 test('about page redirect correct about link', async ({ page }) => {

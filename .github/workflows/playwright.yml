@@ -1,10 +1,7 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master, develop ]
-  pull_request:
-    types: [ opened, edited, synchronize ]
-    branches: [ main, master, develop ]
+    branches: [main]
     
 jobs:
   test:
@@ -16,28 +13,6 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
-    - name: Build and run Docker Compose
-      run: docker-compose up -d --build
-
-    - name: Wait for the application to be ready
-      run: |
-        echo "Waiting for the application to start..."
-        ATTEMPTS=0
-        MAX_ATTEMPTS=30
-        until $(curl --output /dev/null --silent --head --fail http://localhost:3000) || [ $ATTEMPTS -eq $MAX_ATTEMPTS ]; do
-          printf '.'
-          ATTEMPTS=$((ATTEMPTS+1))
-          sleep 10
-        done
-        if [ $ATTEMPTS -eq $MAX_ATTEMPTS ]; then
-          echo "Application failed to start within expected time."
-          exit 1
-        fi
-      timeout-minutes: 5
 
     - name: Install dependencies
       run: npm ci
@@ -54,6 +29,3 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 1
-    - name: Stop and clean Docker Compose
-      run: docker-compose down
-      if: always()
