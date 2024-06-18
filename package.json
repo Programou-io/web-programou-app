@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "npx playwright test",
+    "test:e2e-ui": "npx playwright test --ui",
+    "test:2e2-report": "npx playwright show-report"
   },
   "dependencies": {
     "@next/font": "^13.4.1",
@@ -26,6 +29,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
     "@rocketseat/eslint-config": "^1.2.0"
   }
 }
