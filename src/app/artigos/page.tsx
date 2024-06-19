@@ -45,10 +45,7 @@ export default function ArticlePage() {
           Aqui você econtra nossos artigos, onde trazemos os conhecimentos, para
           a comunidade.
         </p>
-        <SeachInputField
-          onSubmit={submitActionHandler}
-          onChange={submitActionHandler}
-        />
+        <SeachInputField onSubmit={submitActionHandler} />
       </div>
 
       <div className="h-[2px] bg-gray-600 mx-2 my-6" />

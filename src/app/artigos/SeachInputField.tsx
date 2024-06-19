@@ -13,7 +13,6 @@ export type SearchForm = z.infer<typeof searchSchema>
 
 interface SeachInputFieldProps {
   onSubmit(search: SearchForm): void
-  onChange(search: SearchForm): void
 }
 
 export function SeachInputField(props: SeachInputFieldProps) {
