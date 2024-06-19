@@ -1,4 +1,3 @@
-import React from 'react'
 import './globals.css'
 
 // eslint-disable-next-line camelcase
