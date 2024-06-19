@@ -1,147 +1,73 @@
 'use client'
 
+import { client } from 'programou/utils/sanity/client'
 import { useState } from 'react'
+import { z } from 'zod'
+import { Article } from './Article'
 import { ArticleList } from './ArticleList'
 import { EmptyState } from './EmptyState'
 import { SeachInputField, SearchForm } from './SeachInputField'
 
+interface ArticlesRepository {
+  findMany(): Promise<Article[]>
+}
+
+class SanityArticlesRepository implements ArticlesRepository {
+  async findMany(): Promise<Article[]> {
+    const articleResponseSchema = z.array(
+      z.object({
+        title: z.string(),
+        author: z.object({
+          name: z.string(),
+        }),
+        mainImage: z.object({
+          asset: z.object({
+            path: z.string(),
+          }),
+        }),
+        slug: z.object({
+          current: z.string(),
+        }),
+        publishedAt: z.string(),
+      }),
+    )
+    const CONTENT_QUERY = `*[_type == "post"] {
+      ...,
+      author->,
+      mainImage {
+        ...,
+        asset->
+      },
+      categories[]->,
+      body
+    }
+    `
+    const contentResponse = await client.fetch(CONTENT_QUERY)
+    const articlesResponse = articleResponseSchema.parse(contentResponse)
+    return articlesResponse.map((article) => {
+      return {
+        id: article.slug.current,
+        title: article.title,
+        excerpt: article.title.substring(0, 40).concat('...'),
+        author: article.author.name,
+        createdAt: article.publishedAt,
+        imageUrl: 'https://cdn.sanity.io/'.concat(article.mainImage.asset.path),
+        slug: article.slug.current,
+      } as Article
+    })
+  }
+}
+
+const articlesRepository = new SanityArticlesRepository()
+
 export default function ArticlePage() {
-  const allArticles = [
-    {
-      id: '1',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-1',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '2',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-2',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '3',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-3',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '4',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-1',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '5',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-2',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '6',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift 2',
-      slug: 'article-3',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '7',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift 1',
-      slug: 'article-1',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '8',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift 3',
-      slug: 'article-2',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '9',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-3',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '10',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-1',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '11',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title: 'How to create a complete component using view code for Swift',
-      slug: 'article-2',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-    {
-      id: '12',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      title:
-        'How to create a complete component using view code for Swift Batata',
-      slug: 'article-3',
-      excerpt:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex incidunt, excepturi porro vel repellat deserunt culpa veritatis tempora, fugit consectetur expedita fuga hic odio! Molestias necessitatibus hic non maxime itaque...',
-      author: 'Paolo Prodossimo Lopes',
-      createdAt: '10 Apr 2024',
-    },
-  ]
+  const [allArticles, setAllArticles] = useState<Article[]>([])
   const [articles, setArticles] = useState(allArticles)
+
+  articlesRepository.findMany().then((articles) => {
+    setAllArticles(articles)
+    setArticles(articles)
+  })
 
   function submitActionHandler(search: SearchForm) {
     if (search.query.length === 0) {
