@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react'
 import { Article } from './Article'
 import { ArticleList } from './ArticleList'
 import { EmptyState } from './EmptyState'
-import { SanityArticlesRepository } from './SanityArticlesRepository'
+import { articlesRepository } from './SanityArticlesRepository'
 import { SeachInputField, SearchForm } from './SeachInputField'
-
-const articlesRepository = new SanityArticlesRepository()
 
 export default function ArticlePage() {
   const [allArticles, setAllArticles] = useState<Article[]>([])

@@ -4,25 +4,25 @@ import { Article } from './Article'
 import { ArticlesRepository } from './ArticlesRepository'
 
 export class SanityArticlesRepository implements ArticlesRepository {
-  async findMany(): Promise<Article[]> {
-    const articleResponseSchema = z.array(
-      z.object({
-        title: z.string(),
-        description: z.string(),
-        author: z.object({
-          name: z.string(),
-        }),
-        mainImage: z.object({
-          asset: z.object({
-            path: z.string(),
-          }),
-        }),
-        slug: z.object({
-          current: z.string(),
-        }),
-        publishedAt: z.string(),
+  private readonly articleSchema = z.object({
+    title: z.string(),
+    description: z.string(),
+    author: z.object({
+      name: z.string(),
+    }),
+    mainImage: z.object({
+      asset: z.object({
+        path: z.string(),
       }),
-    )
+    }),
+    slug: z.object({
+      current: z.string(),
+    }),
+    publishedAt: z.string(),
+  })
+
+  async findMany(): Promise<Article[]> {
+    const articleResponseSchema = z.array(this.articleSchema)
     const CONTENT_QUERY = `*[_type == "post"] {
         ...,
         author->,
@@ -52,4 +52,42 @@ export class SanityArticlesRepository implements ArticlesRepository {
       } as Article
     })
   }
+
+  async findBySlug(slug: string) {
+    const query = `*[_type == "post" && slug.current == $slug][0] {
+      ...,
+        author->,
+        mainImage {
+          ...,
+          asset->
+        },
+        categories[]->,
+        body
+    }`
+
+    const params = { slug }
+
+    try {
+      const contentResponse = await client.fetch(query, params)
+      console.log('Artigo:', contentResponse)
+      const article = this.articleSchema.parse(contentResponse)
+      return {
+        id: article.slug.current,
+        title: article.title,
+        description:
+          article.description.length > 120
+            ? article.description.substring(0, 120).concat('...')
+            : article.description,
+        author: article.author.name,
+        createdAt: article.publishedAt,
+        imageUrl: 'https://cdn.sanity.io/'.concat(article.mainImage.asset.path),
+        slug: article.slug.current,
+      } as Article
+    } catch (error) {
+      console.error('Erro ao buscar artigo:', error)
+      return null
+    }
+  }
 }
+
+export const articlesRepository = new SanityArticlesRepository()
