@@ -19,11 +19,12 @@ export class SanityArticlesRepository implements ArticlesRepository {
       current: z.string(),
     }),
     publishedAt: z.string(),
+    body: z.any(),
   })
 
   async findMany(): Promise<Article[]> {
-    const articleResponseSchema = z.array(this.articleSchema)
-    const CONTENT_QUERY = `*[_type == "post"] {
+    const articlesSchema = z.array(this.articleSchema)
+    const query = `*[_type == "post"] {
         ...,
         author->,
         mainImage {
@@ -34,23 +35,9 @@ export class SanityArticlesRepository implements ArticlesRepository {
         body
       }
       `
-    const contentResponse = await client.fetch(CONTENT_QUERY)
-    console.log(contentResponse)
-    const articlesResponse = articleResponseSchema.parse(contentResponse)
-    return articlesResponse.map((article) => {
-      return {
-        id: article.slug.current,
-        title: article.title,
-        description:
-          article.description.length > 120
-            ? article.description.substring(0, 120).concat('...')
-            : article.description,
-        author: article.author.name,
-        createdAt: article.publishedAt,
-        imageUrl: 'https://cdn.sanity.io/'.concat(article.mainImage.asset.path),
-        slug: article.slug.current,
-      } as Article
-    })
+    const contentResponse = await client.fetch(query)
+    const articlesResponse = articlesSchema.parse(contentResponse)
+    return articlesResponse.map(this.map)
   }
 
   async findBySlug(slug: string) {
@@ -65,27 +52,24 @@ export class SanityArticlesRepository implements ArticlesRepository {
         body
     }`
 
-    const params = { slug }
+    const contentResponse = await client.fetch(query, { slug })
+    const article = this.articleSchema.parse(contentResponse)
+    return this.map(article)
+  }
 
-    try {
-      const contentResponse = await client.fetch(query, params)
-      console.log('Artigo:', contentResponse)
-      const article = this.articleSchema.parse(contentResponse)
-      return {
-        id: article.slug.current,
-        title: article.title,
-        description:
-          article.description.length > 120
-            ? article.description.substring(0, 120).concat('...')
-            : article.description,
-        author: article.author.name,
-        createdAt: article.publishedAt,
-        imageUrl: 'https://cdn.sanity.io/'.concat(article.mainImage.asset.path),
-        slug: article.slug.current,
-      } as Article
-    } catch (error) {
-      console.error('Erro ao buscar artigo:', error)
-      return null
+  private map(article: z.infer<typeof this.articleSchema>) {
+    return {
+      id: article.slug.current,
+      title: article.title,
+      description:
+        article.description.length > 120
+          ? article.description.substring(0, 120).concat('...')
+          : article.description,
+      author: article.author.name,
+      createdAt: article.publishedAt,
+      imageUrl: 'https://cdn.sanity.io/'.concat(article.mainImage.asset.path),
+      slug: article.slug.current,
+      body: article.body,
     }
   }
 }

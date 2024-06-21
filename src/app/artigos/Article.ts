@@ -6,4 +6,6 @@ export interface Article {
   description: string
   author: string
   createdAt: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any
 }
