@@ -1,5 +1,6 @@
 'use client'
 
+import { analyticsClient } from 'programou/utils/firebase/client'
 import { useState } from 'react'
 import { Article } from './Article'
 import { ArticleList } from './ArticleList'
@@ -18,6 +19,7 @@ export function ArticlesContent(props: ArticlesContentProps) {
     if (search.query.length === 0) {
       setArticles(allArticles)
     } else {
+      analyticsClient.trackSearch({ term: search.query })
       setArticles(
         allArticles.filter((article) => {
           const searchLower = search.query.toLowerCase()
