@@ -1,4 +1,3 @@
-import React from 'react'
 import './globals.css'
 
 // eslint-disable-next-line camelcase
@@ -30,11 +29,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${roboto.variable} ${firaCode.variable}`}>
       <body className="text-gray-100 bg-gray-800 font-default">
-        <div className="flex flex-col h-screen">
-          <div className="h-screen">
-            <Header />
-            {children}
-          </div>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow">{children}</main>
           <Footer />
         </div>
       </body>

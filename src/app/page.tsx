@@ -1,7 +1,49 @@
+'use client'
+
 import { ArrowRight, Bell } from 'lucide-react'
 import Link from 'next/link'
+import { analyticsClient } from 'programou/utils/firebase/client'
 
 export default function Home() {
+  function alertLinkActionHandler() {
+    analyticsClient.trackClick({
+      item: 'link:grupo-comunidade-whats-app',
+    })
+    // analytics.log({
+    //   name: 'click',
+    //   object: {
+    //     detail: 'grupo-comunidade-whats-app',
+    //     feature: 'home',
+    //   },
+    // })
+  }
+
+  function knowMoreActionHandler() {
+    analyticsClient.trackClick({
+      item: 'link:saiba-mais',
+    })
+    // analyticsClient.log({
+    //   name: 'click',
+    //   object: {
+    //     detail: 'saiba-mais',
+    //     feature: 'home',
+    //   },
+    // })
+  }
+
+  // analyticsClient.trackPage({
+  //   path: '/home',
+  //   title: 'home',
+  // })
+
+  // analyticsClient.log({
+  //   name: 'screen_view',
+  //   object: {
+  //     detail: '',
+  //     feature: 'home',
+  //   },
+  // })
+
   return (
     <div>
       <div className="bg-yellow-500 text-center py-3">
@@ -12,6 +54,7 @@ export default function Home() {
             href="https://chat.whatsapp.com/Dyfk97bLCmE9f9uVV1QSVl"
             passHref={true}
             className="font-bold"
+            onClick={alertLinkActionHandler}
           >
             Conhecer agora!
           </Link>
@@ -30,7 +73,7 @@ export default function Home() {
           programação mobile para dispositivos Apple.
         </h2>
         <div className="flex items-center justify-center mt-6">
-          <Link href="/sobre">
+          <Link onClick={knowMoreActionHandler} href="/sobre">
             <p className="flex gap-4 px-6 py-3 bg-turquoise-500 text-black font-bold rounded-md">
               Saiba mais
               <ArrowRight />
