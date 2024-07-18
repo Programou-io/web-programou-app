@@ -189,11 +189,14 @@ export default function AppstorePrivacyPage() {
                 legítimas. Os pedidos devem ser enviados para o controlador de
                 dados usando a informação de contato fornecida anteriormente.
               </p>
-              <p>Este aplicativo não suporta pedidos de "Não me rastreie".</p>
+              <p>
+                Este aplicativo não suporta pedidos de &quotNão me
+                rastreie&rdquo.
+              </p>
               <p>
                 Para determinar se qualquer um dos serviços de terceiros que
-                utiliza honram solicitações de "Não me rastreie", por favor leia
-                as políticas de privacidade.
+                utiliza honram solicitações de &quotNão me rastreie&rdquo, por
+                favor leia as políticas de privacidade.
               </p>
             </div>
             <h3>Definições e referências jurídicas</h3>
