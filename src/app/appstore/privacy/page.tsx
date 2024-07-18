@@ -2,6 +2,7 @@ export default function AppstorePrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto py-16">
       <main className="grid gap-4">
+        <h1 className="text-2xl font-bold">Politicas de privacidade</h1>
         <div>
           <h2 className="text-2xl font-bold">Tipos de dados coletados</h2>
           <p className="text-gray-200">
