@@ -16,6 +16,7 @@ export function Header() {
       <div className="flex gap-4">
         <HeaderLinkButton name="inicío" path="/" />
         <HeaderLinkButton name="sobre" path="/sobre" />
+        <HeaderLinkButton name="artigos" path="/artigos" />
       </div>
     </div>
   )
